@@ -1,0 +1,11 @@
+name: Doom
+main: me.kyllian.mochadoom.doom.DoomPlugin
+author: Kyllian
+version: ${project.version}
+api-version: 1.13
+depend:
+  - ProtocolLib
+
+commands:
+  doom:
+    usage: /<command>

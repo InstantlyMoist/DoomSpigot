@@ -1,8 +1,13 @@
 package mochadoom.awt;
 
+import me.kyllian.doom.data.Pocket;
 import mochadoom.doom.CommandVariable;
 import mochadoom.Engine;
 import mochadoom.Loggers;
+import net.coobird.thumbnailator.makers.FixedSizeThumbnailMaker;
+import net.coobird.thumbnailator.makers.ThumbnailMaker;
+import net.coobird.thumbnailator.resizers.DefaultResizerFactory;
+import net.coobird.thumbnailator.resizers.Resizer;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -125,14 +130,21 @@ public class DoomFrame<Window extends Component & DoomWindow<Window>> implements
             Loggers.getLogger(DoomFrame.class.getName())
                 .log(Level.INFO, "Starting or switching fullscreen, have no Graphics2d yet, skipping paint");
         } else {
+            // TODO: here the screen gets drawn.
+            Pocket pocket = Engine.getEngine().getPlugin().getPlayerHandler().getPocket(Engine.getEngine().getPlayer());
+            // Resize the image to 128x128 using thumbnailinator
+            Resizer resizer = DefaultResizerFactory.getInstance().getResizer(new java.awt.Dimension(dim.width(), dim.height()), new java.awt.Dimension(128, 128));
+            ThumbnailMaker thumbnailMaker = (new FixedSizeThumbnailMaker(128, 128, true, true)).resizer(resizer);
+            pocket.image =  thumbnailMaker.make((BufferedImage) imageSupplier.get());
+
 //            draw(g2d, imageSupplier.get(), dim, null);
             // Output to png file:
-            try {
-                ImageIO.write((BufferedImage) imageSupplier.get(), "png", new File("lol/" + UUID.randomUUID().toString() + ".png"));
-            } catch (Exception exception) {
-                Loggers.getLogger(DoomFrame.class.getName())
-                    .log(Level.SEVERE, "Failed to write test.png", exception);
-            }
+//            try {
+//                ImageIO.write((BufferedImage) imageSupplier.get(), "png", new File("lol/" + UUID.randomUUID().toString() + ".png"));
+//            } catch (Exception exception) {
+//                Loggers.getLogger(DoomFrame.class.getName())
+//                    .log(Level.SEVERE, "Failed to write test.png", exception);
+//            }
             if (showFPS) {
                 ++frames;
                 final long now = System.currentTimeMillis();

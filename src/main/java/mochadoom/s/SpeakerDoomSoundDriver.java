@@ -34,7 +34,7 @@ public class SpeakerDoomSoundDriver extends ClassicDoomSoundDriver {
 
         // Get the sound mochadoom.data from the WAD, allocate lump
         //  in zone memory.
-        name=String.format("dp%mochadoom.s", sfxname).toUpperCase();
+        name=String.format("dp%s", sfxname).toUpperCase();
 
         // Now, there is a severe problem with the
         //  sound handling, in it is not (yet/anymore)

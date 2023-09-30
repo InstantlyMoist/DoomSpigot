@@ -153,9 +153,9 @@ public class CVarManager {
     private void readResponseFile(final String filename) {
         final ResponseReader r = new ResponseReader();
         if (new ResourceIO(filename).readLines(r)) {
-            System.out.println(String.format("Found response file %mochadoom.s, read %d command line variables", filename, r.cVarCount));
+            System.out.println(String.format("Found response file %s, read %d command line variables", filename, r.cVarCount));
         } else {
-            System.out.println(String.format("No such response file %mochadoom.s!", filename));
+            System.out.println(String.format("No such response file %s!", filename));
             System.exit(1);
         }
     }

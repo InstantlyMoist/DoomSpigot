@@ -78,7 +78,7 @@ public class DoomWindowController<E extends Component & DoomWindow<E>, H extends
             }
         } catch (Exception e) {
             Loggers.getLogger(DoomWindow.class.getName()).log(Level.SEVERE,
-                    String.format("Error creating DOOM AWT frame. Exiting. Reason: %mochadoom.s", e.getMessage()), e);
+                    String.format("Error creating DOOM AWT frame. Exiting. Reason: %s", e.getMessage()), e);
             throw e;
         }
     }

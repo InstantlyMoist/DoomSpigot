@@ -232,7 +232,7 @@ public class ConfigManager {
     }
 
     private boolean readFoundConfig(Files file, ResourceIO rio) {
-        System.out.print(String.format("M_LoadDefaults: Using config %mochadoom.s.\n", rio.getFileame()));
+        System.out.print(String.format("M_LoadDefaults: Using config %s.\n", rio.getFileame()));
         if (rio.readLines(line -> {
             final String[] split = SPLITTER.split(line, 2);
             if (split.length < 2) {
@@ -248,7 +248,7 @@ public class ConfigManager {
                         .orElse(split[1]);
 
                 if (update(setting, value) == UpdateStatus.INVALID) {
-                    System.err.printf("WARNING: invalid config value for: %mochadoom.s in %mochadoom.s \n", name, rio.getFileame());
+                    System.err.printf("WARNING: invalid config value for: %s in %s \n", name, rio.getFileame());
                 } else {
                     setting.rebase(file);
                 }
@@ -258,7 +258,7 @@ public class ConfigManager {
         }
         
         // Something went bad, but this won't destroy successfully read values, though.
-        System.err.printf("Can't read the settings file %mochadoom.s\n", rio.getFileame());
+        System.err.printf("Can't read the settings file %s\n", rio.getFileame());
         return false;
     }
     

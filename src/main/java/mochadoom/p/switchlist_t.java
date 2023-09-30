@@ -46,6 +46,6 @@ public class switchlist_t
     }
 
     public String toString() {
-        return String.format("%mochadoom.s %mochadoom.s %d", name1, name2, episode);
+        return String.format("%s %s %d", name1, name2, episode);
     }
 }

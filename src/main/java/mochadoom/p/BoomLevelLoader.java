@@ -522,7 +522,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
                 li.frontsector = sides[ldef.sidenum[side]].sector;
             else {
                 li.frontsector = null;
-                System.err.printf("P_LoadSegs: front of seg %mochadoom.i has no sidedef\n", i);
+                System.err.printf("P_LoadSegs: front of seg %i has no sidedef\n", i);
             }
 
             if (flags(ldef.flags, ML_TWOSIDED) && ldef.sidenum[side ^ 1] != NO_INDEX) {
@@ -645,7 +645,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
                 li.frontsector = sides[ldef.sidenum[side]].sector;
             } else {
                 li.frontsector = null;
-                System.err.printf("P_LoadSegs_V4: front of seg %mochadoom.i has no sidedef\n", i);
+                System.err.printf("P_LoadSegs_V4: front of seg %i has no sidedef\n", i);
             }
 
             if (flags(ldef.flags, ML_TWOSIDED)
@@ -1005,7 +1005,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
                 li.frontsector = sides[ldef.sidenum[side]].sector;
             } else {
                 li.frontsector = null;
-                System.err.printf("P_LoadZSegs: front of seg %mochadoom.i has no sidedef\n", i);
+                System.err.printf("P_LoadZSegs: front of seg %i has no sidedef\n", i);
             }
 
             if (flags(ldef.flags, ML_TWOSIDED) && (ldef.sidenum[side ^ 1] != NO_INDEX)) {
@@ -1482,7 +1482,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
                */
                 char sector_num = (char) msd.sector;
                 if (sector_num >= numsectors) {
-                    System.err.printf("P_LoadSideDefs2: sidedef %mochadoom.i has out-of-range sector num %u\n", i, sector_num);
+                    System.err.printf("P_LoadSideDefs2: sidedef %i has out-of-range sector num %u\n", i, sector_num);
                     sector_num = 0;
                 }
                 sd.sector = sec = sectors[sector_num];
@@ -1947,13 +1947,13 @@ public class BoomLevelLoader extends AbstractLevelLoader {
         lumpnum = DOOM.wadLoader.CheckNumForName(mapname.toUpperCase());
 
         if (lumpnum < 0) {
-            DOOM.doomSystem.Error("P_SetupLevel: There is no %mochadoom.s map.", mapname);
+            DOOM.doomSystem.Error("P_SetupLevel: There is no %s map.", mapname);
         }
 
         for (i = ML_THINGS + 1; i <= ML_SECTORS; i++) {
             if (!P_CheckLumpsForSameSource(lumpnum, lumpnum + i)) {
                 DOOM.doomSystem.Error(
-                    "P_SetupLevel: Level wad structure is incomplete. There is no %mochadoom.s lump. (%mochadoom.s)",
+                    "P_SetupLevel: Level wad structure is incomplete. There is no %s lump. (%s)",
                     ml_labels[i], DOOM.wadLoader.GetNameForLump(lumpnum));
             }
         }
@@ -1962,7 +1962,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
         i = lumpnum + ML_BLOCKMAP + 1;
         if (P_CheckLumpsForSameSource(lumpnum, i)) {
             if (DOOM.wadLoader.GetLumpInfo(i).name.compareToIgnoreCase("BEHAVIOR") == 0) {
-                DOOM.doomSystem.Error("P_SetupLevel: %mochadoom.s: Hexen format not supported", mapname);
+                DOOM.doomSystem.Error("P_SetupLevel: %s: Hexen format not supported", mapname);
             }
         }
     }

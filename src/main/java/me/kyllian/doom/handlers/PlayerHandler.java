@@ -20,11 +20,11 @@ public class PlayerHandler {
         pockets =  new HashMap<>();
     }
 
-    public void loadGame(Player player, String gameFile) {
+    public void loadGame(Player player) {
         //TODO: First load animation (?)
         try {
             plugin.notifyEmulate();
-            getPocket(player).loadEmulator(plugin, player, gameFile);
+            getPocket(player).loadEmulator(plugin, player);
             plugin.getMapHandler().sendMap(player);
             if (plugin.isProtocolLib()) return;
             Location playerLocation = player.getLocation();

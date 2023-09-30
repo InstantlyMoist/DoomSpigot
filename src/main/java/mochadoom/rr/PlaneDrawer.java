@@ -135,7 +135,7 @@ public abstract class PlaneDrawer<T,V> implements IPlaneDrawer {
 
     protected final void rangeCheck(int x1,int x2,int y) {
         if (x2 < x1 || x1 < 0 || x2 >= view.width || y > view.height)
-            I.Error("%mochadoom.s: %d, %d at %d",this.getClass().getName(), x1, x2, y);
+            I.Error("%s: %d, %d at %d",this.getClass().getName(), x1, x2, y);
         }
   
         

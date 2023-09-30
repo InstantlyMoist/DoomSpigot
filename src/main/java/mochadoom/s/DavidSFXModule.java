@@ -497,7 +497,7 @@ public class DavidSFXModule extends AbstractSoundDriver{
 				// A: Apparently it'mochadoom.s 0-255 L-R.
 				if (bc!=null){
 				float pan= bc.getMinimum()+(bc.getMaximum()-bc.getMinimum())*(float)(sep)/ISoundDriver.PANNING_STEPS;
-				//System.err.printf("Panning %d %mochadoom.f %mochadoom.f %mochadoom.f\mochadoom.n",sep,bc.getMinimum(),bc.getMaximum(),pan);
+				//System.err.printf("Panning %d %f %f %f\mochadoom.n",sep,bc.getMinimum(),bc.getMaximum(),pan);
 				bc.setValue(pan);
 				}
 			}
@@ -533,7 +533,7 @@ public class DavidSFXModule extends AbstractSoundDriver{
 							//long a=System.nanoTime();
 							auline.drain();
 							//long b=System.nanoTime();
-							//System.out.printf("Channel %d completed in %mochadoom.f.\mochadoom.n",id,(float)(b-a)/1000000000f);
+							//System.out.printf("Channel %d completed in %f.\mochadoom.n",id,(float)(b-a)/1000000000f);
 							}
 						// Report that this channel is free.
 						currentSound = null;

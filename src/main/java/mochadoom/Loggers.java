@@ -107,7 +107,7 @@ public class Loggers {
         
         if (logger.isLoggable(Level.FINEST))
             logger.log(Level.FINEST, () -> String.format(
-                "\n\nENCOUNTERED EVENT: %mochadoom.s [%mochadoom.s] \n%mochadoom.s: %mochadoom.s \n%mochadoom.s \n%mochadoom.s: %mochadoom.s \n%mochadoom.s: %mochadoom.s \nOn event: %mochadoom.s",
+                "\n\nENCOUNTERED EVENT: %s [%s] \n%s: %s \n%s \n%s: %s \n%s: %s \nOn event: %s",
                 handler, ActionMode.PERFORM,
                 RelationType.DEPEND, Arrays.toString(depends),
                 adjusts.entrySet().stream().collect(StringBuilder::new, (sb, e) -> sb.append(e.getKey()).append(' ').append(e.getValue()).append('\n'), StringBuilder::append),
@@ -117,7 +117,7 @@ public class Loggers {
             ));
         else if (logger.isLoggable(Level.FINER)) {
             logger.log(Level.FINER, () -> String.format(
-                "\n\nENCOUNTERED EVENT: %mochadoom.s [%mochadoom.s] \n%mochadoom.s: %mochadoom.s \n%mochadoom.s \n%mochadoom.s: %mochadoom.s \n%mochadoom.s: %mochadoom.s \n",
+                "\n\nENCOUNTERED EVENT: %s [%s] \n%s: %s \n%s \n%s: %s \n%s: %s \n",
                 handler, ActionMode.PERFORM,
                 RelationType.DEPEND, Arrays.toString(depends),
                 adjusts.entrySet().stream().collect(StringBuilder::new, (sb, e) -> sb.append(e.getKey()).append(' ').append(e.getValue()).append('\n'), StringBuilder::append),
@@ -126,7 +126,7 @@ public class Loggers {
             ));
         } else {
             logger.log(Level.FINE, () -> String.format(
-                "\nENCOUNTERED EVENT: %mochadoom.s [%mochadoom.s]",
+                "\nENCOUNTERED EVENT: %s [%s]",
                 handler, ActionMode.PERFORM
             ));
         }

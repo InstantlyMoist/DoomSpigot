@@ -151,7 +151,7 @@ public class SimpleTextureManager implements TextureManager<byte[]> {
             i = CheckTextureNumForName(name);
 
             if (i == -1) {
-                I.Error("R_TextureNumForName: %mochadoom.s not found", name);
+                I.Error("R_TextureNumForName: %s not found", name);
             }
             return i;
         }
@@ -252,11 +252,11 @@ public class SimpleTextureManager implements TextureManager<byte[]> {
         
         for (int j=0 ; j<texture.patchcount ; j++)
         {
-            //System.err.printf("Texture %d name %mochadoom.s patch %d lookup %d\mochadoom.n",mochadoom.i,mtexture.name,j,mpatch[j].patch);
+            //System.err.printf("Texture %d name %s patch %d lookup %d\mochadoom.n",mochadoom.i,mtexture.name,j,mpatch[j].patch);
             patch[j].patch = patchlookup[mpatch[j].patch];
             if (patch[j].patch == -1)
             {
-            I.Error ("R_InitTextures: Missing patch in texture %mochadoom.s",
+            I.Error ("R_InitTextures: Missing patch in texture %s",
                  texture.name);
             }
         }       
@@ -471,7 +471,7 @@ public class SimpleTextureManager implements TextureManager<byte[]> {
             /* Do we really mind?
             if (texturecompositesize[texnum] > 0x10000-texture.height)
             {
-            I.Error ("R_GenerateLookup: texture no %d (%mochadoom.s) is >64k",
+            I.Error ("R_GenerateLookup: texture no %d (%s) is >64k",
                  texnum,textures[texnum].name);
             } */
             
@@ -873,7 +873,7 @@ public class SimpleTextureManager implements TextureManager<byte[]> {
             
               for (int i=0;i<numflats;i++){
                   flattranslation[i]=i;
-                //  System.out.printf("Verification: flat[%d] is %mochadoom.s in lump %d\mochadoom.n",mochadoom.i,W.GetNameForNum(flattranslation[mochadoom.i]),flatstorage[mochadoom.i]);
+                //  System.out.printf("Verification: flat[%d] is %s in lump %d\mochadoom.n",mochadoom.i,W.GetNameForNum(flattranslation[mochadoom.i]),flatstorage[mochadoom.i]);
               }
             }
     
@@ -1024,9 +1024,9 @@ public class SimpleTextureManager implements TextureManager<byte[]> {
 
         i = W.CheckNumForName(name);
 
-        //System.out.printf("R_FlatNumForName retrieved lump %d for name %mochadoom.s picnum %d\mochadoom.n",mochadoom.i,name,FlatCache.get(mochadoom.i));
+        //System.out.printf("R_FlatNumForName retrieved lump %d for name %s picnum %d\mochadoom.n",mochadoom.i,name,FlatCache.get(mochadoom.i));
         if (i == -1) {
-            I.Error("R_FlatNumForName: %mochadoom.s not found", name);
+            I.Error("R_FlatNumForName: %s not found", name);
         }
 
         return FlatCache.get(i);
@@ -1290,9 +1290,9 @@ public class SimpleTextureManager implements TextureManager<byte[]> {
         // Problem. Composite texture requested as if it was masked
         // but it doesn't yet exist. Create it.
         if (getMaskedComposite(tex) == null){
-            System.err.printf("Forced generation of composite %mochadoom.s\n",CheckTextureNameForNum(tex),smp_composite[id],col,ofs);
+            System.err.printf("Forced generation of composite %s\n",CheckTextureNameForNum(tex),smp_composite[id],col,ofs);
             GenerateMaskedComposite(tex);
-            System.err.printf("Composite patch %mochadoom.s %d\n",getMaskedComposite(tex).name,getMaskedComposite(tex).columns.length);
+            System.err.printf("Composite patch %s %d\n",getMaskedComposite(tex).name,getMaskedComposite(tex).columns.length);
         }
         
         // Last resort. 
@@ -1362,9 +1362,9 @@ public class SimpleTextureManager implements TextureManager<byte[]> {
         // Problem. Composite texture requested as if it was masked
         // but it doesn't yet exist. Create it.
         if (getMaskedComposite(tex) == null){
-            System.err.printf("Forced generation of composite %mochadoom.s\n",CheckTextureNameForNum(tex),composite,col,ofs);
+            System.err.printf("Forced generation of composite %s\n",CheckTextureNameForNum(tex),composite,col,ofs);
             GenerateMaskedComposite(tex);
-            System.err.printf("Composite patch %mochadoom.s %d\n",getMaskedComposite(tex).name,getMaskedComposite(tex).columns.length);
+            System.err.printf("Composite patch %s %d\n",getMaskedComposite(tex).name,getMaskedComposite(tex).columns.length);
         }
         
         // Last resort. 
@@ -1427,9 +1427,9 @@ public class SimpleTextureManager implements TextureManager<byte[]> {
         // Problem. Composite texture requested as if it was masked
         // but it doesn't yet exist. Create it.
         if (getMaskedComposite(tex) == null){
-            System.err.printf("Forced generation of composite %mochadoom.s\n",CheckTextureNameForNum(tex),composite,col,ofs);
+            System.err.printf("Forced generation of composite %s\n",CheckTextureNameForNum(tex),composite,col,ofs);
             GenerateMaskedComposite(tex);
-            System.err.printf("Composite patch %mochadoom.s %d\n",getMaskedComposite(tex).name,getMaskedComposite(tex).columns.length);
+            System.err.printf("Composite patch %s %d\n",getMaskedComposite(tex).name,getMaskedComposite(tex).columns.length);
         }
         
         // Last resort. 

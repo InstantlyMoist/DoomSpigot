@@ -3,6 +3,7 @@ package me.kyllian.doom.handlers.map;
 import me.kyllian.doom.DoomPlugin;
 
 import me.kyllian.doom.data.Pocket;
+import mochadoom.Engine;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -98,14 +99,7 @@ public class MapHandlerNew implements MapHandler {
 
             @Override
             public void render(MapView mapView, MapCanvas mapCanvas, Player player) {
-//                Emulator emulator = pocket.getEmulator();
-//
-//                byte[] rgb = emulator.getDisplay().freeBufferArrayByte;
-//                for (int x = 0; x < 128; x++) {
-//                    for (int y = 0; y < 128; y++) {
-//                        mapCanvas.setPixel(x, y, rgb[x + (y * 128)]);
-//                    }
-//                }
+                mapCanvas.drawImage(0, 0, pocket.getImage());
             }
         };
 
@@ -114,6 +108,7 @@ public class MapHandlerNew implements MapHandler {
         int tickDelay = plugin.getConfig().getInt("tick_update_delay", 1);
         new BukkitRunnable() {
             final Pocket pocket = plugin.getPlayerHandler().getPocket(player);
+
             @Override
             public void run() {
 //                if (pocket.getEmulator() == null) {

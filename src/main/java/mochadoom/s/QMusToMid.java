@@ -512,7 +512,7 @@ public class QMusToMid {
 
 	  if( access( mus, 0 ) )
 	    {
-	      System.out.println( "ERROR : %mochadoom.s does not exist.\mochadoom.n", mus ) ;
+	      System.out.println( "ERROR : %s does not exist.\mochadoom.n", mus ) ;
 	      return 1 ;
 	    }
 
@@ -520,12 +520,12 @@ public class QMusToMid {
 	    {
 	      if( !*ow )
 	        {
-	          System.out.println( "Can't overwrite %mochadoom.s.\mochadoom.n", mid ) ;
+	          System.out.println( "Can't overwrite %s.\mochadoom.n", mid ) ;
 	          return 2 ;
 	        }
 	      if( *ow == 1 )
 	        {
-	          System.out.println( "%mochadoom.s exists : overwrite (Y=Yes,N=No,A=yes for All,Q=Quit)"
+	          System.out.println( "%s exists : overwrite (Y=Yes,N=No,A=yes for All,Q=Quit)"
 	                 " ? [Y]\b\b", mid ) ;
 	          fflush( stdout ) ;
 	          do
@@ -535,7 +535,7 @@ public class QMusToMid {
 	          switch( mochadoom.n )
 	            {
 	            case 'N' :
-	              System.out.println( "N\mochadoom.n%mochadoom.s NOT converted.\mochadoom.n", mus ) ;
+	              System.out.println( "N\mochadoom.n%s NOT converted.\mochadoom.n", mus ) ;
 	              return 3 ;
 	            case 'A' :
 	              System.out.println( "A" ) ;
@@ -555,7 +555,7 @@ public class QMusToMid {
 	    file = fopen(mid, "r");
 	    if ( file ) {
 	      fclose(file);
-	      System.out.println( "qmus2mid: file %mochadoom.s exists, not removed.\mochadoom.n", mid ) ;
+	      System.out.println( "qmus2mid: file %s exists, not removed.\mochadoom.n", mid ) ;
 	      return 2 ;
 	    }
 	  }*/
@@ -575,17 +575,17 @@ public class QMusToMid {
 	      switch( error )
 	        {
 	        case NOTMUSFILE :
-	        	System.out.println( "%mochadoom.s is not a MUS file.\n"/*, mus*/ ) ; break ;
+	        	System.out.println( "%s is not a MUS file.\n"/*, mus*/ ) ; break ;
 	        case COMUSFILE :
-	        	System.out.println( "Can't open %mochadoom.s for read.\n"/*, mus*/ ) ; break ;
+	        	System.out.println( "Can't open %s for read.\n"/*, mus*/ ) ; break ;
 	        case COTMPFILE :
 	        	System.out.println( "Can't open temp file.\n" ) ; break  ;
 	        case CWMIDFILE :
-	        	System.out.println( "Can't write %mochadoom.s (?).\n"/*, mid */) ; break ;
+	        	System.out.println( "Can't write %s (?).\n"/*, mid */) ; break ;
 	        case MUSFILECOR :
-	        	System.out.println( "%mochadoom.s is corrupted.\n"/*, mus*/) ; break ;
+	        	System.out.println( "%s is corrupted.\n"/*, mus*/) ; break ;
 	        case TOOMCHAN :
-	        	System.out.println( "%mochadoom.s contains more than 16 channels.\n"/*, mus*/ ) ; break ;
+	        	System.out.println( "%s contains more than 16 channels.\n"/*, mus*/ ) ; break ;
 	        case MEMALLOC :
 	        	System.out.println( "Not enough memory.\n" ) ; break ;
 	        default : break ;
@@ -603,7 +603,7 @@ public class QMusToMid {
 	          sSystem.out.println( buffer, " : %lu bytes", (long) file_data.st_size ) ;
 	        }*/
 	      
-	      /*System.out.println( "%mochadoom.s (%scompressed) written%mochadoom.s.\mochadoom.n", mid, nocomp ? "NOT " : "",
+	      /*System.out.println( "%s (%scompressed) written%s.\mochadoom.n", mid, nocomp ? "NOT " : "",
 	             file ? buffer : ""  ) ;*/
 	    }
 
@@ -698,7 +698,7 @@ public class QMusToMid {
 	  if( (strrchr( argv[1], '*' ) != NULL) || (strrchr( argv[1], '?' ) != NULL) )
 	    {
 	      PrintHeader() ;
-	      System.out.println( "Sorry, there is nothing matching %mochadoom.s...\mochadoom.n", argv[1] ) ;
+	      System.out.println( "Sorry, there is nothing matching %s...\mochadoom.n", argv[1] ) ;
 	      exit( EXIT_FAILURE ) ;
 	    }
 	  strncpy( mus, argv[1], MAXPATH ) ;
@@ -779,7 +779,7 @@ public class QMusToMid {
 	                System.out.println( "\mochadoom.n" ) ;
 	              if( query )
 	                {
-	                  System.out.println( "Convert %mochadoom.s ? (Y=Yes,N=No,A=yes for All,Q=Quit)"
+	                  System.out.println( "Convert %s ? (Y=Yes,N=No,A=yes for All,Q=Quit)"
 	                         " [Y]\b\b", mus ) ;
 	                  fflush( stdout ) ;
 	                  do
@@ -789,7 +789,7 @@ public class QMusToMid {
 	                  switch( mochadoom.n )
 	                    {
 	                    case 'N' :
-	                      System.out.println( "N\mochadoom.n%mochadoom.s NOT converted.\mochadoom.n", mus ) ;
+	                      System.out.println( "N\mochadoom.n%s NOT converted.\mochadoom.n", mus ) ;
 	                      line = 1 ;
 	                      continue ;
 	                      break ;

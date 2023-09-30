@@ -2601,7 +2601,7 @@ public abstract class RendererState<T, V> implements SceneRenderer<T, V>, ILimit
         // it. If OK, this trumps even those specified in lumps.
         DOOM.cVarManager.with(CommandVariable.TRANMAP, 0, (String tranmap) -> {
             if (C2JUtils.testReadAccess(tranmap)) {
-                System.out.printf("Translucency map file %mochadoom.s specified in -tranmap arg. Attempting to use...\n", tranmap);
+                System.out.printf("Translucency map file %s specified in -tranmap arg. Attempting to use...\n", tranmap);
                 main_tranmap = new byte[256 * 256]; // killough 4/11/98
                 int result = MenuMisc.ReadFile(tranmap, main_tranmap);
                 if (result > 0) {

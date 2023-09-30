@@ -159,7 +159,7 @@ public class BasicNetworkInterface implements DoomSystemNetworking {
               sendData.cmds[c].buttons = netbuffer.cmds[c].buttons;
           }
              */
-            //printf ("sending %mochadoom.i\mochadoom.n",gametic);
+            //printf ("sending %i\mochadoom.n",gametic);
             sendData.copyFrom(netbuffer);
             // MAES: This will force the buffer to be refreshed.
             byte[] bytes = sendData.pack();
@@ -178,11 +178,11 @@ public class BasicNetworkInterface implements DoomSystemNetworking {
                 sendSocketPacket(sendsocket, sendPacket);
             } catch (Exception e) {
                 e.printStackTrace();
-                DOOM.doomSystem.Error("SendPacket error: %mochadoom.s", e.getMessage());
+                DOOM.doomSystem.Error("SendPacket error: %s", e.getMessage());
             }
 
             //  if (c == -1)
-            //      I_Error ("SendPacket error: %mochadoom.s",strerror(errno));
+            //      I_Error ("SendPacket error: %s",strerror(errno));
         }
 
     }
@@ -212,7 +212,7 @@ public class BasicNetworkInterface implements DoomSystemNetworking {
                 return;
             } catch (Exception e) {
                 if (e.getClass() != java.nio.channels.IllegalBlockingModeException.class) {
-                    DOOM.doomSystem.Error("GetPacket: %mochadoom.s", (Object[]) e.getStackTrace());
+                    DOOM.doomSystem.Error("GetPacket: %s", (Object[]) e.getStackTrace());
                 }
             }
 
@@ -391,7 +391,7 @@ public class BasicNetworkInterface implements DoomSystemNetworking {
         } else if (doomcom.command == CMD_GET) {
             netget.invoke();
         } else {
-            DOOM.doomSystem.Error("Bad net cmd: %mochadoom.i\n", doomcom.command);
+            DOOM.doomSystem.Error("Bad net cmd: %i\n", doomcom.command);
         }
 
     }

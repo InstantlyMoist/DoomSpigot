@@ -120,7 +120,7 @@ public interface EventBase<Handler extends Enum<Handler> & EventBase<Handler>> e
 
         @Override
         public String toString() {
-            return String.format("%mochadoom.s on [%mochadoom.s]", affection, affectedMode);
+            return String.format("%s on [%s]", affection, affectedMode);
         }
     }
     

@@ -17,6 +17,7 @@
 
 package mochadoom;
 
+import me.kyllian.doom.DoomPlugin;
 import mochadoom.awt.DoomWindow;
 import mochadoom.awt.DoomWindowController;
 import mochadoom.awt.EventBase.KeyStateInterest;
@@ -26,6 +27,7 @@ import mochadoom.doom.CommandVariable;
 import mochadoom.doom.ConfigManager;
 import mochadoom.doom.DoomMain;
 import mochadoom.i.Strings;
+import org.bukkit.entity.Player;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -37,37 +39,8 @@ import static mochadoom.g.Signals.ScanCode.*;
 
 public class Engine {
     private static volatile Engine instance;
-
-    public static void run(String[] argv) throws IOException {
-        final Engine local;
-        synchronized (Engine.class) {
-            local = new Engine(argv);
-        }
-
-        /**
-         * Add eventHandler listeners to JFrame and its Canvas elememt
-         */
-        /*content.addKeyListener(listener);
-        content.addMouseListener(listener);
-        content.addMouseMotionListener(listener);
-        frame.addComponentListener(listener);
-        frame.addWindowFocusListener(listener);
-        frame.addWindowListener(listener);*/
-        // never returns
-        try {
-            local.DOOM.setupLoop();
-        } catch(Exception e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-    }
-
-    /**
-     * Mocha Doom engine entry point
-     */
-    public static void main(final String[] argv) throws IOException {
-        run(argv);
-    }
+    private DoomPlugin plugin;
+    private Player player;
     
     public final CVarManager cvm;
     public final ConfigManager cm;
@@ -75,8 +48,10 @@ public class Engine {
     private final DoomMain<?, ?> DOOM;
     
     @SuppressWarnings("unchecked")
-    private Engine(final String... argv) throws IOException {
+    public Engine(DoomPlugin plugin, Player player, final String... argv) throws IOException {
         instance = this;
+        instance.plugin = plugin;
+        instance.player = player;
         
         // reads command line arguments
         this.cvm = new CVarManager(Arrays.asList(argv));
@@ -133,6 +108,12 @@ public class Engine {
                 return WANTS_MORE_PASS;
             }, SC_PAUSE)
         );
+
+        try {
+            instance.DOOM.setupLoop();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
     
     /**
@@ -144,9 +125,9 @@ public class Engine {
         
     public String getWindowTitle(double frames) {
         if (cvm.bool(CommandVariable.SHOWFPS)) {
-            return String.format("%mochadoom.s - %mochadoom.s FPS: %.2f", Strings.MOCHA_DOOM_TITLE, DOOM.bppMode, frames);
+            return String.format("%s - %s FPS: %.2f", Strings.MOCHA_DOOM_TITLE, DOOM.bppMode, frames);
         } else {
-            return String.format("%mochadoom.s - %mochadoom.s", Strings.MOCHA_DOOM_TITLE, DOOM.bppMode);
+            return String.format("%s - %s", Strings.MOCHA_DOOM_TITLE, DOOM.bppMode);
         }
     }
 
@@ -157,7 +138,7 @@ public class Engine {
                 local = Engine.instance;
                 if (local == null) {
                     try {
-                        Engine.instance = local = new Engine();
+                        Engine.instance = local = new Engine(null, null);
                     } catch (IOException ex) {
                         Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
                         throw new Error("This launch is DOOMed");
@@ -175,5 +156,13 @@ public class Engine {
     
     public static ConfigManager getConfig() {
         return getEngine().cm;
+    }
+
+    public DoomPlugin getPlugin() {
+        return plugin;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

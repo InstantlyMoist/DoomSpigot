@@ -1295,7 +1295,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
                 if (ev.isKey(SC_CAPSLK)) {
                     // Just toggle it. It'mochadoom.s too hard to read the state.
                     alwaysrun = !alwaysrun;
-                    players[consoleplayer].message = String.format("Always run: %mochadoom.s", alwaysrun);
+                    players[consoleplayer].message = String.format("Always run: %s", alwaysrun);
                 }
 
                 ev.withKey(sc -> {
@@ -1444,7 +1444,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
                 // check for turbo cheats
                 if (cmd.forwardmove > TURBOTHRESHOLD && ((gametic & 31) == 0) && ((gametic >> 5) & 3) == i) {
                     //extern char *player_names[4];
-                    //sprintf (turbomessage, "%mochadoom.s is turbo!",player_names[mochadoom.i]);
+                    //sprintf (turbomessage, "%s is turbo!",player_names[mochadoom.i]);
                     players[consoleplayer].message = mochadoom.hu.HU.player_names[i] + turbomessage;
                 }
 
@@ -2018,7 +2018,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
                 }
             }
             
-            build.append(String.format("%mochadoom.s%d.dsg", SAVEGAMENAME, savegameslot));
+            build.append(String.format("%s%d.dsg", SAVEGAMENAME, savegameslot));
             name = build.toString();
 
             description = savedescription;
@@ -2418,7 +2418,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
             
             this.commit();
             CM.SaveDefaults();
-            doomSystem.Error ("timed %d gametics in %d realtics = %mochadoom.f frames per second",gametic
+            doomSystem.Error ("timed %d gametics in %d realtics = %f frames per second",gametic
                 , realtics, gametic*(double)(TICRATE)/realtics); 
         }
 
@@ -2448,7 +2448,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
             MenuMisc.WriteFile(demoname, demobuffer); 
             //Z_Free (demobuffer); 
             demorecording = false; 
-            doomSystem.Error ("Demo %mochadoom.s recorded",demoname);
+            doomSystem.Error ("Demo %s recorded",demoname);
         } 
 
         return false; 
@@ -2535,7 +2535,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
         
         // Random number generator, but we can have others too.
         this.random = new DelegateRandom();
-        System.out.print(String.format("M_Random: Using %mochadoom.s.\n", random.getClass().getSimpleName()));
+        System.out.print(String.format("M_Random: Using %s.\n", random.getClass().getSimpleName()));
         
         // Sound can be left until later, in Start
         this.wadLoader = new WadLoader(this.doomSystem); // The wadloader is a "weak" status holder.
@@ -2846,7 +2846,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
                     file.append("~");
                     file.append(DEVMAPS);
                     file.append(String.format("E%dM%d.wad", ep, map));
-                    file.append(String.format("Warping to Episode %mochadoom.s, Map %mochadoom.s.\n", ep, map));
+                    file.append(String.format("Warping to Episode %s, Map %s.\n", ep, map));
                     break;
                 case commercial:
                 case freedoom2:
@@ -2893,7 +2893,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
         if (loaddemo != null) {
             loaddemo = C2JUtils.unquoteIfQuoted(loaddemo, '"');
             AddFile(loaddemo + ".lmp");
-            System.out.printf("Playing mochadoom.demo %mochadoom.s.lmp.\n", loaddemo);
+            System.out.printf("Playing mochadoom.demo %s.lmp.\n", loaddemo);
             autostart = true;
         }
         
@@ -2965,7 +2965,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
                 file.append("c:\\doomdata\\");
             }
             
-            file.append(String.format("%mochadoom.s%d.dsg", SAVEGAMENAME, c));
+            file.append(String.format("%s%d.dsg", SAVEGAMENAME, c));
             LoadGame(file.toString());
         });
     }
@@ -3578,7 +3578,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
             ArbitrateNetStart();
         }
 
-        System.out.printf("startskill %mochadoom.s  deathmatch: %mochadoom.s  startmap: %d  startepisode: %d\n",
+        System.out.printf("startskill %s  deathmatch: %s  startmap: %d  startepisode: %d\n",
                 startskill.toString(), Boolean.toString(deathmatch), startmap, startepisode);
 
         // read values out of doomcom

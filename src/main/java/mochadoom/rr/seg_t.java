@@ -177,7 +177,7 @@ public class seg_t
     public String toString() {
         return String
                 .format(
-                    "Seg %d\n\tFrontsector: %mochadoom.s\n\tBacksector: %mochadoom.s\n\tVertexes: %x %x %x %x",
+                    "Seg %d\n\tFrontsector: %s\n\tBacksector: %s\n\tVertexes: %x %x %x %x",
                     iSegID, frontsector, backsector, v1x, v1y, v2x, v2y);
     }
 

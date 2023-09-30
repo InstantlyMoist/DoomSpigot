@@ -256,7 +256,7 @@ abstract class SoftwareGraphicsSystem<T, V>
             return new DataBufferByte((byte[]) buffer, ((byte[]) buffer).length);
         }
         
-        throw new UnsupportedOperationException(String.format("SoftwareVideoRenderer does not support %mochadoom.s buffers", buffer.getClass()));
+        throw new UnsupportedOperationException(String.format("SoftwareVideoRenderer does not support %s buffers", buffer.getClass()));
     }
 
     @Override

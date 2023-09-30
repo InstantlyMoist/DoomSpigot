@@ -544,8 +544,8 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
 
         long b = System.nanoTime();
 
-        System.err.printf("Blockmap generated in %mochadoom.f sec\n", (b - a) / 1e9);
-        System.err.printf("Time spend in AddBlockLine : %mochadoom.f sec\n", total / 1e9);
+        System.err.printf("Blockmap generated in %f sec\n", (b - a) / 1e9);
+        System.err.printf("Time spend in AddBlockLine : %f sec\n", total / 1e9);
     }
 
     // jff 10/6/98
@@ -837,7 +837,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
         }
 
         // Maes: purely academic. Most maps are well above 0.68
-        // System.out.printf("Reject table density: %mochadoom.f",rejectDensity());
+        // System.out.printf("Reject table density: %f",rejectDensity());
     }
     
     /**

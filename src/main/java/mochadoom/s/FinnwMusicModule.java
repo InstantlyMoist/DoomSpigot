@@ -277,7 +277,7 @@ public class FinnwMusicModule implements IMusic {
                 }
                 break;
             default:
-                String msg = String.format("Unknown event type: last=%5s eventType=%d chanIndex=%d%mochadoom.n", last, eventType, chanIndex);
+                String msg = String.format("Unknown event type: last=%5s eventType=%d chanIndex=%d%n", last, eventType, chanIndex);
                 throw new IllegalArgumentException(msg);
             }
         } while (! last);
@@ -525,7 +525,7 @@ public class FinnwMusicModule implements IMusic {
     private static Channel checkChannelExists(String type, Channel channel)
             throws IllegalArgumentException {
         if (channel == null) {
-            String msg = String.format("Invalid channel for %mochadoom.s message", type);
+            String msg = String.format("Invalid channel for %s message", type);
             throw new IllegalArgumentException(msg);
         } else {
             return channel;

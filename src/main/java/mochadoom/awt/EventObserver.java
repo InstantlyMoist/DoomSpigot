@@ -293,14 +293,14 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>> {
     protected final void enableAction(final Handler h, ActionMode mode) {
         actionStateHolder.enableAction(h, mode);
         if (LOGGER.isLoggable(Level.FINE)) {
-            LOGGER.log(Level.FINE, () -> String.format("ENABLE ACTION: %mochadoom.s [%mochadoom.s]", h, mode));
+            LOGGER.log(Level.FINE, () -> String.format("ENABLE ACTION: %s [%s]", h, mode));
         }
     }
     
     protected final void disableAction(final Handler h, ActionMode mode) {
         actionStateHolder.disableAction(h, mode);
         if (LOGGER.isLoggable(Level.FINE)) {
-            LOGGER.log(Level.FINE, () -> String.format("DISABLE ACTION: %mochadoom.s [%mochadoom.s]", h, mode));
+            LOGGER.log(Level.FINE, () -> String.format("DISABLE ACTION: %s [%s]", h, mode));
         }
     }
     
@@ -312,7 +312,7 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>> {
             actionStateHolder.mapAdjustment(h, type, targets);
         }
         if (LOGGER.isLoggable(Level.FINE)) {
-            LOGGER.log(Level.FINE, () -> String.format("RELATION MAPPING: %mochadoom.s -> [%mochadoom.s] {%mochadoom.s}", h, type, Arrays.toString(targets)));
+            LOGGER.log(Level.FINE, () -> String.format("RELATION MAPPING: %s -> [%s] {%s}", h, type, Arrays.toString(targets)));
         }
     }
     
@@ -324,7 +324,7 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>> {
             actionStateHolder.unmapAdjustment(h, type, targets);
         }
         if (LOGGER.isLoggable(Level.FINE)) {
-            LOGGER.log(Level.FINE, () -> String.format("RELATION UNMAP: %mochadoom.s -> [%mochadoom.s] {%mochadoom.s}", h, type, Arrays.toString(targets)));
+            LOGGER.log(Level.FINE, () -> String.format("RELATION UNMAP: %s -> [%s] {%s}", h, type, Arrays.toString(targets)));
         }
     }
     
@@ -336,35 +336,35 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>> {
             actionStateHolder.restoreAdjustment(h, type, targets);
         }
         if (LOGGER.isLoggable(Level.FINE)) {
-            LOGGER.log(Level.FINE, () -> String.format("RELATION RESTORE: %mochadoom.s -> [%mochadoom.s] {%mochadoom.s}", h, type, Arrays.toString(targets)));
+            LOGGER.log(Level.FINE, () -> String.format("RELATION RESTORE: %s -> [%s] {%s}", h, type, Arrays.toString(targets)));
         }
     }
     
     protected void mapAction(final Handler h, ActionMode mode, EventAction<Handler> remap) {
         actionStateHolder.mapAction(h, mode, remap);
         if (LOGGER.isLoggable(Level.FINE)) {
-            LOGGER.log(Level.FINE, () -> String.format("ACTION MAPPING (MAP): %mochadoom.s [%mochadoom.s]", h, mode));
+            LOGGER.log(Level.FINE, () -> String.format("ACTION MAPPING (MAP): %s [%s]", h, mode));
         }
     }
     
     protected void remapAction(final Handler h, ActionMode mode, EventAction<Handler> remap) {
         actionStateHolder.remapAction(h, mode, remap);
         if (LOGGER.isLoggable(Level.FINE)) {
-            LOGGER.log(Level.FINE, () -> String.format("ACTION MAPPING (REMAP): %mochadoom.s [%mochadoom.s]", h, mode));
+            LOGGER.log(Level.FINE, () -> String.format("ACTION MAPPING (REMAP): %s [%s]", h, mode));
         }
     }
     
     protected void unmapAction(final Handler h, ActionMode mode) {
         actionStateHolder.unmapAction(h, mode);
         if (LOGGER.isLoggable(Level.FINE)) {
-            LOGGER.log(Level.FINE, () -> String.format("UNMAP ACTION: %mochadoom.s [%mochadoom.s]", h, mode));
+            LOGGER.log(Level.FINE, () -> String.format("UNMAP ACTION: %s [%s]", h, mode));
         }
     }
     
     protected void restoreAction(final Handler h, ActionMode mode) {
         actionStateHolder.restoreAction(h, mode);
         if (LOGGER.isLoggable(Level.FINE)) {
-            LOGGER.log(Level.FINE, () -> String.format("RESTORE ACTION: %mochadoom.s [%mochadoom.s]", h, mode));
+            LOGGER.log(Level.FINE, () -> String.format("RESTORE ACTION: %s [%s]", h, mode));
         }
     }
 }

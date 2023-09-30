@@ -160,7 +160,7 @@ public class WadLoader implements IWadLoader {
 		try {
 			handle = InputStreamSugar.createInputStreamFromURI(uri,entry,type);
 		} catch (Exception e) {
-			I.Error(" couldn't open resource %mochadoom.s \n", uri);
+			I.Error(" couldn't open resource %s \n", uri);
 			return;
 		}
 		
@@ -214,7 +214,7 @@ public class WadLoader implements IWadLoader {
 			if (header.identification.compareTo("IWAD") != 0) {
 				// Homebrew levels?
 				if (header.identification.compareTo("PWAD") != 0) {
-					I.Error("Wad file %mochadoom.s doesn't have IWAD or PWAD id\n",checkname);
+					I.Error("Wad file %s doesn't have IWAD or PWAD id\n",checkname);
 				} else wadinfo.src=wad_source_t.source_pwad;
 
 				// modifiedgame = true;
@@ -348,7 +348,7 @@ public class WadLoader implements IWadLoader {
 		try {
 			handle = new DataInputStream(new BufferedInputStream(new FileInputStream(reloadname)));
 		} catch (Exception e) {
-			I.Error("W_Reload: couldn't open %mochadoom.s", reloadname);
+			I.Error("W_Reload: couldn't open %s", reloadname);
 		}
 
 		header.read(handle);
@@ -415,13 +415,13 @@ public class WadLoader implements IWadLoader {
 				        this.AddFile(s,null, type);				        
 				    }
 				    
-				    System.out.printf("\tadded %mochadoom.s (zipped: %mochadoom.s network: %mochadoom.s)\n",s,
+				    System.out.printf("\tadded %s (zipped: %s network: %s)\n",s,
 				        C2JUtils.flags(type, InputStreamSugar.ZIP_FILE),
 				        C2JUtils.flags(type, InputStreamSugar.NETWORK_FILE));
 				    
 				}
 				else
-					System.err.printf("Couldn't open resource %mochadoom.s\n",s);
+					System.err.printf("Couldn't open resource %s\n",s);
 			}
 		}
 
@@ -611,7 +611,7 @@ public class WadLoader implements IWadLoader {
 			System.err.println("Error: " + name + " not found");
 			System.err.println("Hash: "
 					+ Long.toHexString(name8.getLongHash(name)));
-			I.Error("W_GetNumForName: %mochadoom.s not found!", name);
+			I.Error("W_GetNumForName: %s not found!", name);
 		}
 
 		return i;
@@ -638,7 +638,7 @@ public class WadLoader implements IWadLoader {
 	@Override
 	public int LumpLength(int lump) {
 		if (lump >= numlumps)
-			I.Error("W_LumpLength: %mochadoom.i >= numlumps", lump);
+			I.Error("W_LumpLength: %i >= numlumps", lump);
 
 		return (int) lumpinfo[lump].size;
 	}
@@ -671,7 +671,7 @@ public class WadLoader implements IWadLoader {
 		InputStream handle = null;
 
 		if (lump >= this.numlumps) {
-			I.Error("W_ReadLump: %mochadoom.i >= numlumps", lump);
+			I.Error("W_ReadLump: %i >= numlumps", lump);
 			return;
 		}
 
@@ -684,7 +684,7 @@ public class WadLoader implements IWadLoader {
 				handle = InputStreamSugar.createInputStreamFromURI(this.reloadname,null,0);
 			} catch (Exception e) {
 				e.printStackTrace();
-				I.Error("W_ReadLump: couldn't open %mochadoom.s", reloadname);
+				I.Error("W_ReadLump: couldn't open %s", reloadname);
 			}
 		} else
 			handle = l.handle;
@@ -741,7 +741,7 @@ public class WadLoader implements IWadLoader {
     public <T> T CacheLumpNum(int lump, int tag, Class<T> what) {
 		
 		if (lump >= numlumps) {
-			I.Error("W_CacheLumpNum: %mochadoom.i >= numlumps", lump);
+			I.Error("W_CacheLumpNum: %i >= numlumps", lump);
 		}
 
 		// Nothing cached here...
@@ -829,7 +829,7 @@ public class WadLoader implements IWadLoader {
 			Class<?> what) throws IOException {
 
 		if (lump >= numlumps) {
-			I.Error("W_CacheLumpNum: %mochadoom.i >= numlumps", lump);
+			I.Error("W_CacheLumpNum: %i >= numlumps", lump);
 		}
 
 		// Nothing cached here...
@@ -899,7 +899,7 @@ public class WadLoader implements IWadLoader {
     @Override
 	public <T extends CacheableDoomObject> T[] CacheLumpNumIntoArray(int lump, int num, ArraySupplier<T> what, IntFunction<T[]> arrGen){
 		if (lump >= numlumps) {
-			I.Error("CacheLumpNumIntoArray: %mochadoom.i >= numlumps", lump);
+			I.Error("CacheLumpNumIntoArray: %i >= numlumps", lump);
 		}
 
         /**
@@ -907,7 +907,7 @@ public class WadLoader implements IWadLoader {
          *  - Good Sign 2017/05/07
          */
 		/*if (!implementsInterface(what, CacheableDoomObject.class)){
-			I.Error("CacheLumpNumIntoArray: %mochadoom.s does not implement CacheableDoomObject", what.getName());
+			I.Error("CacheLumpNumIntoArray: %s does not implement CacheableDoomObject", what.getName());
 		}*/
 	
 		// Nothing cached here...
@@ -927,7 +927,7 @@ public class WadLoader implements IWadLoader {
                 lumpcache[lump].unpack(thebuffer);
             } catch (IOException e) {
                 Loggers.getLogger(WadLoader.class.getName()).log(Level.WARNING, String.format(
-                        "Could not auto-unpack lump %mochadoom.s into an array of objects of class %mochadoom.s", lump, what
+                        "Could not auto-unpack lump %s into an array of objects of class %s", lump, what
                 ), e);
             }
 			
@@ -1220,7 +1220,7 @@ public class WadLoader implements IWadLoader {
 		for (InputStream e:d){
 			try {
 				e.close();
-				//System.err.printf("%mochadoom.s file handle closed",e.toString());
+				//System.err.printf("%s file handle closed",e.toString());
 				count++;
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -1274,7 +1274,7 @@ public class WadLoader implements IWadLoader {
 		  lump=lumpinfo[i];
 	    if (IsMarker(start_marker,lump.name)) // start marker found
 	      { // If this is the first start marker, add start marker to marked lumps
-//	    	System.err.printf("%mochadoom.s identified as starter mark for %mochadoom.s index %d\mochadoom.n",lump.name,
+//	    	System.err.printf("%s identified as starter mark for %s index %d\mochadoom.n",lump.name,
 //	    			start_marker,mochadoom.i);
 	        if (num_marked==0)
 	          {
@@ -1286,7 +1286,7 @@ public class WadLoader implements IWadLoader {
 	            // No real use for this yet
 	            marked[num_marked].wadfile = lump.wadfile;
 	            num_marked = 1;
-		    	//System.err.printf("%mochadoom.s identified as FIRST starter mark for %mochadoom.s index %d\mochadoom.n",lump.name,
+		    	//System.err.printf("%s identified as FIRST starter mark for %s index %d\mochadoom.n",lump.name,
 		    	//		start_marker,mochadoom.i);
 	          }
 	        is_marked = true;                            // start marking lumps
@@ -1294,7 +1294,7 @@ public class WadLoader implements IWadLoader {
 	    else
 	      if (IsMarker(end_marker, lump.name))       // end marker found
 	        {
-		    //	System.err.printf("%mochadoom.s identified as end mark for %mochadoom.s index %d\mochadoom.n",lump.name,
+		    //	System.err.printf("%s identified as end mark for %s index %d\mochadoom.n",lump.name,
 		    //			end_marker,mochadoom.i);
 	          mark_end = true;                           // add end marker below
 	          is_marked = false;                          // stop marking lumps
@@ -1313,7 +1313,7 @@ public class WadLoader implements IWadLoader {
 	            if(namespace != li_namespace.ns_sprites || lump.size > 8)
 	            {
 	              marked[num_marked] = lump.clone();
-	             // System.err.printf("Marked %mochadoom.s as %d for %mochadoom.s\mochadoom.n",lump.name,num_marked,namespace);
+	             // System.err.printf("Marked %s as %d for %s\mochadoom.n",lump.name,num_marked,namespace);
 	              marked[num_marked++].namespace = namespace;  // killough 4/17/98
 	              result++;
 	            }

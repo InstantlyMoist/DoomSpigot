@@ -119,13 +119,13 @@ public interface Patches<V, E extends Enum<E>> extends Columns<V, E> {
     default void printDebugPatchInfo(patch_t patch, int x, int y, final boolean predevide, final boolean scaleOffset, final boolean scaleStart, int dupx, int dupy) {
         Loggers.getLogger(Patches.class.getName()).log(Level.INFO, () -> String.format(
             "V_DrawPatch: bad patch (ignored)\n" +
-            "Patch %mochadoom.s at %d, %d exceeds LFB\n" +
-            "\tpredevide: %mochadoom.s\n" +
-            "\tscaleOffset: %mochadoom.s\n" +
-            "\tscaleStart: %mochadoom.s\n" +
-            "\tdupx: %mochadoom.s, dupy: %mochadoom.s\n" +
-            "\tleftoffset: %mochadoom.s\n" +
-            "\ttopoffset: %mochadoom.s\n",
+            "Patch %s at %d, %d exceeds LFB\n" +
+            "\tpredevide: %s\n" +
+            "\tscaleOffset: %s\n" +
+            "\tscaleStart: %s\n" +
+            "\tdupx: %s, dupy: %s\n" +
+            "\tleftoffset: %s\n" +
+            "\ttopoffset: %s\n",
             patch.name, x, y,
             predevide, scaleOffset, scaleStart, dupx, dupy, patch.leftoffset, patch.topoffset
         ));

@@ -50,7 +50,7 @@ public abstract class ObjectQueuePool<K>
     public void checkIn(K t)
     {
     	if (D) if (t instanceof mobj_t)
-    	System.out.printf("Object %mochadoom.s returned to the pool\n",t.toString());
+    	System.out.printf("Object %s returned to the pool\n",t.toString());
         locked.push(t);
     }
 

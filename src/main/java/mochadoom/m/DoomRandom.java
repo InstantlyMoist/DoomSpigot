@@ -130,7 +130,7 @@ class DoomRandom implements IRandom{
     @Override
     public int P_Random(String message) {
         int value = P_Random();
-        SLY.sync("PR %mochadoom.s [%d]=%d\n", message,
+        SLY.sync("PR %s [%d]=%d\n", message,
                 prndindex, value);
         return value;
     }
@@ -148,7 +148,7 @@ class DoomRandom implements IRandom{
     public int P_Random(ActiveStates caller, mobjtype_t type, int sequence) {
         int value = P_Random();
         /*
-    SLY.sync("PR #%d %s_%d %mochadoom.s [%d]=%d\mochadoom.n", caller.ordinal(),caller,sequence,
+    SLY.sync("PR #%d %s_%d %s [%d]=%d\mochadoom.n", caller.ordinal(),caller,sequence,
         type, prndindex, value);*/
         return value;
     }

@@ -732,7 +732,7 @@ public final class C2JUtils {
 
         // Init the null portions as well
         C2JUtils.initArrayOfObjects(tmp, oldarray.length, tmp.length);
-        System.out.printf("Old array of type %mochadoom.s resized. New capacity: %d\n", instance.getClass(), newsize);
+        System.out.printf("Old array of type %s resized. New capacity: %d\n", instance.getClass(), newsize);
 
         return tmp;
     }
@@ -750,7 +750,7 @@ public final class C2JUtils {
 		// For non-autoinit types, this is enough.
 		T[] tmp = Arrays.copyOf(oldarray, newsize);
 		
-        System.out.printf("Old array of type %mochadoom.s resized without auto-init. New capacity: %d\n",
+        System.out.printf("Old array of type %s resized without auto-init. New capacity: %d\n",
             tmp.getClass().getComponentType(), newsize);
 		
 		return tmp;

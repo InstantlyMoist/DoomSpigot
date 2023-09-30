@@ -101,9 +101,9 @@ public class DoomToWave {
 	  int phys_size = size /*- headsize*/;
 	  if (datasize > phys_size)
 	  {
-	    System.out.println("Sound %mochadoom.s: declared sample size %lu greater than lump size %lu ;"/*,
+	    System.out.println("Sound %s: declared sample size %lu greater than lump size %lu ;"/*,
 		lump_name (name), (unsigned long) datasize, (unsigned long) phys_size*/);
-	    System.out.println("Sound %mochadoom.s: truncating to lump size."/*, lump_name (name)*/);
+	    System.out.println("Sound %s: truncating to lump size."/*, lump_name (name)*/);
 	    datasize = phys_size;
 	  }
 	  /* Sometimes the size of sound lump is greater
@@ -116,9 +116,9 @@ public class DoomToWave {
 	    else
 	    {
 	      /*Warning (
-		"Sound %mochadoom.s: lump size %lu greater than declared sample size %lu ;",
+		"Sound %s: lump size %lu greater than declared sample size %lu ;",
 		lump_name (name), (unsigned long) datasize, (unsigned long) phys_size);
-	      Warning ("Sound %mochadoom.s: truncating to declared sample size.",
+	      Warning ("Sound %s: truncating to declared sample size.",
 		  lump_name (name));*/
 	    }
 	  }
@@ -143,9 +143,9 @@ public class DoomToWave {
 		  int phys_size = size /*- headsize*/;
 		  if (datasize > phys_size)
 		  {
-		    System.out.println("Sound %mochadoom.s: declared sample size %lu greater than lump size %lu ;"/*,
+		    System.out.println("Sound %s: declared sample size %lu greater than lump size %lu ;"/*,
 			lump_name (name), (unsigned long) datasize, (unsigned long) phys_size*/);
-		    System.out.println("Sound %mochadoom.s: truncating to lump size."/*, lump_name (name)*/);
+		    System.out.println("Sound %s: truncating to lump size."/*, lump_name (name)*/);
 		    datasize = phys_size;
 		  }
 		  /* Sometimes the size of sound lump is greater
@@ -158,9 +158,9 @@ public class DoomToWave {
 		    else
 		    {
 		      /*Warning (
-			"Sound %mochadoom.s: lump size %lu greater than declared sample size %lu ;",
+			"Sound %s: lump size %lu greater than declared sample size %lu ;",
 			lump_name (name), (unsigned long) datasize, (unsigned long) phys_size);
-		      Warning ("Sound %mochadoom.s: truncating to declared sample size.",
+		      Warning ("Sound %s: truncating to declared sample size.",
 			  lump_name (name));*/
 		    }
 		  }
@@ -260,7 +260,7 @@ public class DoomToWave {
 	  is.read(bytes, 0, sz);
 	  os.write(bytes, 0, sz);
 	    //if(fwrite((buffer+(wsize)),(size_t)sz,1,fp)!=1)
-	    //  ProgError("%mochadoom.s: write error (%mochadoom.s)", fname (file), strerror (errno));
+	    //  ProgError("%s: write error (%s)", fname (file), strerror (errno));
 	  }
 	}
 

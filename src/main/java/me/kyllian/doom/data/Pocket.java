@@ -1,5 +1,7 @@
 package me.kyllian.doom.data;
 
+import lombok.Getter;
+import lombok.Setter;
 import me.kyllian.doom.DoomPlugin;
 import me.kyllian.doom.helpers.ButtonToggleHelper;
 import mochadoom.Engine;
@@ -10,8 +12,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 
+@Getter
 public class Pocket {
 
     private BukkitTask arrowDespawnHandler;
@@ -19,31 +23,38 @@ public class Pocket {
     private DoomPlugin plugin;
 
     private Engine engine;
+    public BufferedImage image;
 
     private ButtonToggleHelper buttonToggleHelper;
 
     private ItemStack handItem = null;
+
+    @Setter
     private Entity arrow;
 
     private String gameFileWithoutExtension;
 
-    public void loadEmulator(DoomPlugin plugin, Player player, String gameFile) {
+    public void loadEmulator(DoomPlugin plugin, Player player) {
         this.plugin = plugin;
 
         createSavesFolder(plugin, player);
-        File romFile = new File(gameFile);
-        this.gameFileWithoutExtension = romFile.getName();
         File saveFile = new File(plugin.getDataFolder(), "saves/" + player.getUniqueId() + "/" + gameFileWithoutExtension + ".sav");
 
-        try {
-            // TODO: Start emulator here!
-//            engine = new Engine();
+        image = new BufferedImage(128, 128, BufferedImage.TYPE_INT_RGB);
+
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            try {
+                // TODO: Start emulator here!
+                System.out.println("Looking at " + plugin.getDataFolder().getAbsolutePath() + "\\DOOM2.WAD");
+                engine = new Engine(plugin, player, "-iwad", plugin.getDataFolder().getAbsolutePath() + "\\DOOM2.WAD");
 //            emulator = new Emulator(gameFile, saveFile, player);
 //            emulator.run();
-        } catch (Exception e) {
-            Bukkit.getLogger().info("GAMEBOY: error");
-            e.printStackTrace();
-        }
+            } catch (Exception e) {
+                Bukkit.getLogger().info("GAMEBOY: error");
+                e.printStackTrace();
+            }
+        });
+
 
 
 //        buttonToggleHelper = new ButtonToggleHelper(plugin, emulator);
@@ -85,21 +96,5 @@ public class Pocket {
     public void createSavesFolder(DoomPlugin plugin, Player player) {
         File savesFolder = new File(plugin.getDataFolder(), "saves/" + player.getUniqueId().toString() + "/" + gameFileWithoutExtension + ".sav");
         savesFolder.mkdirs();
-    }
-
-//    public Emulator getEmulator() {
-//        return emulator;
-//    }
-
-    public ButtonToggleHelper getButtonToggleHelper() {
-        return buttonToggleHelper;
-    }
-
-    public Entity getArrow() {
-        return arrow;
-    }
-
-    public void setArrow(Entity arrow) {
-        this.arrow = arrow;
     }
 }

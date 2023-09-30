@@ -53,24 +53,11 @@ public class DoomExecutor implements CommandExecutor {
                 }
                 return true;
             }
-        }
-        if (args.length > 1) {
             if (args[0].equalsIgnoreCase("play")) {
 //                if (!pocket.isEmpty()) {
 //                    player.sendMessage(plugin.getMessageHandler().getMessage("already-running"));
 //                    return true;
 //                }
-                String gameName = "";
-                for (int i = 1; i != args.length; i++) {
-                    gameName += args[i] + " ";
-                }
-                gameName = gameName.trim();
-                String foundPath = plugin.getRomHandler().getRoms().get(gameName);
-                if (foundPath == null) {
-                    sender.sendMessage(plugin.getMessageHandler().getMessage("not-found"));
-                    showHelp(sender);
-                    return true;
-                }
                 if (plugin.isProtocolLib()) {
                     Entity entity = player.getLocation().getWorld().spawnEntity(player.getLocation(), EntityType.ARROW);
                     entity.addPassenger(player);
@@ -80,8 +67,8 @@ public class DoomExecutor implements CommandExecutor {
 
                     pocket.setArrow(entity);
                 }
-                player.sendMessage(plugin.getMessageHandler().getMessage(plugin.isProtocolLib() ? "now-playing-protocollib" : "now-playing-normal").replace("%gamename%",gameName));
-                plugin.getPlayerHandler().loadGame(player, foundPath);
+                player.sendMessage(plugin.getMessageHandler().getMessage(plugin.isProtocolLib() ? "now-playing-protocollib" : "now-playing-normal"));
+                plugin.getPlayerHandler().loadGame(player);
                 return true;
             }
         }

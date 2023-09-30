@@ -393,7 +393,7 @@ public class player_t /*extends mobj_t */ implements Cloneable, IReadableDoomObj
         }
 
         if (ammo < 0 || ammo > NUMAMMO) {
-            DOOM.doomSystem.Error("P_GiveAmmo: bad type %mochadoom.i", ammo);
+            DOOM.doomSystem.Error("P_GiveAmmo: bad type %i", ammo);
         }
 
         if (this.ammo[ammo] == maxammo[ammo]) {

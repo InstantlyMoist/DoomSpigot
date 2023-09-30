@@ -101,7 +101,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver {
         for (int i = -128; i < 128; i++) {
             steptable[steptablemid + i] =
                 (int) (Math.pow(2.0, (i / 64.0)) * 65536.0);
-            //System.out.printf("Pitch %d %d %mochadoom.f\mochadoom.n",mochadoom.i,steptable[steptablemid + mochadoom.i],FixedFloat.toFloat(steptable[steptablemid + mochadoom.i]));
+            //System.out.printf("Pitch %d %d %f\mochadoom.n",mochadoom.i,steptable[steptablemid + mochadoom.i],FixedFloat.toFloat(steptable[steptablemid + mochadoom.i]));
         }
     }
 
@@ -125,7 +125,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver {
 
         // Get the sound mochadoom.data from the WAD, allocate lump
         // in zone memory.
-        name = String.format("ds%mochadoom.s", sfxname).toUpperCase();
+        name = String.format("ds%s", sfxname).toUpperCase();
 
         // Now, there is a severe problem with the
         // sound handling, in it is not (yet/anymore)
@@ -176,7 +176,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver {
         // Remove the cached lump.
         DM.wadLoader.UnlockLumpNum(sfxlump);
 
-        if (D) System.out.printf("SFX %d name %mochadoom.s size %d speed %d padded to %d\n", index, S_sfx[index].name, dmx.datasize,dmx.speed,paddedsize);
+        if (D) System.out.printf("SFX %d name %s size %d speed %d padded to %d\n", index, S_sfx[index].name, dmx.datasize,dmx.speed,paddedsize);
         // Preserve padded length.
         len[index] = paddedsize;
 
@@ -204,7 +204,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver {
 
         // Get the sound mochadoom.data from the WAD, allocate lump
         // in zone memory.
-        name = String.format("ds%mochadoom.s", sfxname).toUpperCase();
+        name = String.format("ds%s", sfxname).toUpperCase();
 
         // Now, there is a severe problem with the
         // sound handling, in it is not (yet/anymore)
@@ -302,7 +302,7 @@ public abstract class AbstractSoundDriver implements ISoundDriver {
     //
     public final int GetSfxLumpNum(sfxinfo_t sfx) {
         String namebuf;
-        namebuf = String.format("ds%mochadoom.s", sfx.name).toUpperCase();
+        namebuf = String.format("ds%s", sfx.name).toUpperCase();
         if (namebuf.equals("DSNONE"))
             return -1;
 

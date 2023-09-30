@@ -200,7 +200,7 @@ public class AbstractDoomAudio implements IDoomSound{
 		
 		//if (origin!=null && origin.type!=null)
 		// System.err.printf(
-	  	//   "S_StartSoundAtVolume: playing sound %d (%mochadoom.s) from %mochadoom.s %d\mochadoom.n",
+	  	//   "S_StartSoundAtVolume: playing sound %d (%s) from %s %d\mochadoom.n",
 	  	 //  sfx_id, S_sfx[sfx_id].name , origin.type.toString(),origin.hashCode());
 		 
 
@@ -254,7 +254,7 @@ public class AbstractDoomAudio implements IDoomSound{
 			}
 
 			if (!rc) {
-				//System.err.printf("S_StartSoundAtVolume: Sound %d (%mochadoom.s) rejected because: inaudible\mochadoom.n",
+				//System.err.printf("S_StartSoundAtVolume: Sound %d (%s) rejected because: inaudible\mochadoom.n",
 			  	//   sfx_id, S_sfx[sfx_id].name );
 				return;
 			}
@@ -340,7 +340,7 @@ public class AbstractDoomAudio implements IDoomSound{
 				pitch,
 				priority);
 		
-		if (D) System.err.printf("Handle %d for channel %d for sound %mochadoom.s vol %d sep %d\n",channels[cnum].handle,
+		if (D) System.err.printf("Handle %d for channel %d for sound %s vol %d sep %d\n",channels[cnum].handle,
 				cnum,sfx.name,volume,sep);
 	}	
 
@@ -498,7 +498,7 @@ public class AbstractDoomAudio implements IDoomSound{
 			c = channels[cnum];
 			sfx = c.sfxinfo;
 
-			//System.out.printf("Updating channel %d %mochadoom.s\mochadoom.n",cnum,c);
+			//System.out.printf("Updating channel %d %s\mochadoom.n",cnum,c);
 			if (c.sfxinfo!=null)
 			{
 				if (ISND.SoundIsPlaying(c.handle))
@@ -627,7 +627,7 @@ public class AbstractDoomAudio implements IDoomSound{
 		// get lumpnum if neccessary
 		if (music.lumpnum==0)
 		{
-			namebuf=String.format("d_%mochadoom.s", music.name);
+			namebuf=String.format("d_%s", music.name);
 			music.lumpnum = DS.wadLoader.GetNumForName(namebuf);
 		}
 

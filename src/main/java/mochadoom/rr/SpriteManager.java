@@ -188,7 +188,7 @@ public class SpriteManager<T, V> implements ISpriteManager {
                             switch (sprtemp[frame].rotate) {
                             case -1:
                                 // no rotations were found for that frame at all
-                                DOOM.doomSystem.Error("R_InitSprites: No patches found for %mochadoom.s frame %c",
+                                DOOM.doomSystem.Error("R_InitSprites: No patches found for %s frame %c",
                                         namelist[i], frame + 'A');
                                 break;
 
@@ -202,7 +202,7 @@ public class SpriteManager<T, V> implements ISpriteManager {
                                 int rotation;
                                 for (rotation = 0; rotation < 8; rotation++)
                                     if (sprtemp[frame].lump[rotation] == -1)
-                                        DOOM.doomSystem.Error("R_InitSprites: Sprite %mochadoom.s frame %c is missing rotations",
+                                        DOOM.doomSystem.Error("R_InitSprites: Sprite %s frame %c is missing rotations",
                                                 namelist[i], frame + 'A');
                                 break;
                             }
@@ -374,7 +374,7 @@ public class SpriteManager<T, V> implements ISpriteManager {
             int r;
 
             if (frame >= 29 || rotation > 8)
-                I.Error("R_InstallSpriteLump: Bad frame characters in lump %mochadoom.i",
+                I.Error("R_InstallSpriteLump: Bad frame characters in lump %i",
                         lump);
 
             if ((int) frame > maxframe)
@@ -404,7 +404,7 @@ public class SpriteManager<T, V> implements ISpriteManager {
                      // decided that this frame should have no more rotations,
                      // hence we found an error and we bomb everything.
                     
-                    I.Error("R_InitSprites: Sprite %mochadoom.s frame %c has multiple rot=0 lump",
+                    I.Error("R_InitSprites: Sprite %s frame %c has multiple rot=0 lump",
                             spritename, 'A' + frame);
                 }
 
@@ -417,7 +417,7 @@ public class SpriteManager<T, V> implements ISpriteManager {
                      // use naive true/false evaluation for .rotate ( -1 is also
                      // an admissible value).
 
-                    I.Error("R_InitSprites: Sprite %mochadoom.s frame %c has rotations and a rot=0 lump",
+                    I.Error("R_InitSprites: Sprite %s frame %c has rotations and a rot=0 lump",
                             spritename, 'A' + frame);
                 }
 
@@ -432,7 +432,7 @@ public class SpriteManager<T, V> implements ISpriteManager {
 
             // the lump is only used for one rotation
             if (sprtemp[frame].rotate == 0)
-                I.Error("R_InitSprites: Sprite %mochadoom.s frame %c has rotations and a rot=0 lump",
+                I.Error("R_InitSprites: Sprite %s frame %c has rotations and a rot=0 lump",
                         spritename, 'A' + frame);
 
             sprtemp[frame].rotate = 1;
@@ -443,7 +443,7 @@ public class SpriteManager<T, V> implements ISpriteManager {
                 // FUN FACT: with resource coalesing, this is no longer an
                 // error.
                 // I.Error
-                // ("R_InitSprites: Sprite %mochadoom.s : %c : %c has two lumps mapped to it",
+                // ("R_InitSprites: Sprite %s : %c : %c has two lumps mapped to it",
                 // spritename, 'A'+frame, '1'+rotation);
 
                 // Everything is OK, we can bless the temporary sprite'mochadoom.s frame'mochadoom.s
@@ -567,7 +567,7 @@ public class SpriteManager<T, V> implements ISpriteManager {
                     switch ((int) sprtemp[frame].rotate) {
                     case -1:
                         // no rotations were found for that frame at all
-                        I.Error("R_InitSprites: No patches found for %mochadoom.s frame %c",
+                        I.Error("R_InitSprites: No patches found for %s frame %c",
                                 namelist[mochadoom.i], frame + 'A');
                         break;
 
@@ -579,7 +579,7 @@ public class SpriteManager<T, V> implements ISpriteManager {
                         // must have all 8 frames
                         for (rotation = 0; rotation < 8; rotation++)
                             if (sprtemp[frame].lump[rotation] == -1)
-                                I.Error("R_InitSprites: Sprite %mochadoom.s frame %c is missing rotations",
+                                I.Error("R_InitSprites: Sprite %s frame %c is missing rotations",
                                         namelist[mochadoom.i], frame + 'A');
                         break;
                     }

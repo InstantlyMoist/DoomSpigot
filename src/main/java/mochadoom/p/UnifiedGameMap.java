@@ -275,7 +275,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
                 lstanim.numpics = lstanim.picnum - lstanim.basepic + 1;
 
                 if (lstanim.numpics < 2) {
-                    DOOM.doomSystem.Error("P_InitPicAnims: bad cycle from %mochadoom.s to %mochadoom.s",
+                    DOOM.doomSystem.Error("P_InitPicAnims: bad cycle from %s to %s",
                         animdefs[i].startname, animdefs[i].endname);
                 }
 
@@ -416,7 +416,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
                     /*
                      * // UNUSED - debug? int value; if
                      * (R_CheckTextureNumForName(alphSwitchList[mochadoom.i].name1) < 0) {
-                     * system.Error("Can't find switch texture '%mochadoom.s'!",
+                     * system.Error("Can't find switch texture '%s'!",
                      * alphSwitchList[mochadoom.i].name1); continue; } value =
                      * R_TextureNumForName(alphSwitchList[mochadoom.i].name1);
                      */
@@ -692,7 +692,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
         
     	/*
         try {
-        System.err.printf("Delete: %mochadoom.s %d<= %mochadoom.s %d => %mochadoom.s %d\mochadoom.n",
+        System.err.printf("Delete: %s %d<= %s %d => %s %d\mochadoom.n",
             ((mobj_t)thinker.prev).type,((mobj_t)thinker.prev).thingnum,
             ((mobj_t)thinker).type,((mobj_t)thinker).thingnum,
             ((mobj_t)thinker.next).type,((mobj_t)thinker.next).thingnum);
@@ -712,7 +712,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
             //(next.prev = currentthinker = thinker.prev).next = next;
             //thinker.next=thinker.prev=null;
             //try {
-           // System.err.printf("Delete: %mochadoom.s %d <==> %mochadoom.s %d\mochadoom.n",
+           // System.err.printf("Delete: %s %d <==> %s %d\mochadoom.n",
            //     ((mobj_t)currentthinker.prev).type,((mobj_t)currentthinker.prev).thingnum,
            //     ((mobj_t)currentthinker.next).type,((mobj_t)currentthinker.next).thingnum);
             //} catch (ClassCastException e){

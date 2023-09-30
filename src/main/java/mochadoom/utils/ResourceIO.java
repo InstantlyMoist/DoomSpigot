@@ -64,7 +64,7 @@ public class ResourceIO {
                 
                 return true;
             } catch (IOException x) {
-                System.err.format("IOException: %mochadoom.s%mochadoom.n", x);
+                System.err.format("IOException: %s%n", x);
                 return false;
             }
         }
@@ -82,7 +82,7 @@ public class ResourceIO {
             
             return true;
         } catch (IOException x) {
-            System.err.format("IOException: %mochadoom.s%mochadoom.n", x);
+            System.err.format("IOException: %s%n", x);
             return false;
         }
     }

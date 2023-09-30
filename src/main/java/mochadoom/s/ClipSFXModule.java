@@ -107,7 +107,7 @@ public class ClipSFXModule extends AbstractSoundDriver{
 
 	        // Get the sound mochadoom.data from the WAD, allocate lump
 	        // in zone memory.
-	        name = String.format("ds%mochadoom.s", sfxname).toUpperCase();
+	        name = String.format("ds%s", sfxname).toUpperCase();
 
 	        // Now, there is a severe problem with the
 	        // sound handling, in it is not (yet/anymore)

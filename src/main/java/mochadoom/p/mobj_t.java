@@ -543,7 +543,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
 	/*
 	 * @Override protected void finalize(){ count++; if (count%100==0)
 	 * System.err
-	 * .printf("Total %d Mobj %mochadoom.s@%d finalized free memory: %d\mochadoom.n",count,
+	 * .printf("Total %d Mobj %s@%d finalized free memory: %d\mochadoom.n",count,
 	 * this.type.name(),this.hashCode(),Runtime.getRuntime().freeMemory()); }
 	 */
 	protected static int count = 0;
@@ -570,7 +570,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
 	
     @Override
 	public String toString(){
-	    return String.format("%mochadoom.s %d",this.type,this.thingnum);
+	    return String.format("%s %d",this.type,this.thingnum);
 	}
 
 }

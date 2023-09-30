@@ -293,7 +293,7 @@ public class LevelLoader extends AbstractLevelLoader {
       mt.angle = SHORT(mt.angle);
       mt.type = SHORT(mt.type);
       mt.options = SHORT(mt.options);*/
-            //System.out.printf("Spawning %d %mochadoom.s\mochadoom.n",mochadoom.i,mt.type);
+            //System.out.printf("Spawning %d %s\mochadoom.n",mochadoom.i,mt.type);
             DOOM.actions.SpawnMapThing(mt);
         }
 

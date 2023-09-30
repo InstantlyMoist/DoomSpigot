@@ -123,7 +123,7 @@ public class TraitFactory {
                     if (fieldClass == ContextKey.class) {
                         final ContextKey<?> key = ContextKey.class.cast(f.get(null));
                         c.put(key, key.contextConstructor);
-                        LOGGER.fine(() -> String.format("%mochadoom.s for %mochadoom.s", c.get(key).getClass(), f.getDeclaringClass()));
+                        LOGGER.fine(() -> String.format("%s for %s", c.get(key).getClass(), f.getDeclaringClass()));
                     }
                 }
             }
@@ -197,7 +197,7 @@ public class TraitFactory {
 
         @Override
         public String toString() {
-            return String.format("context in the Trait %mochadoom.s (preferred id: %d)", traitClass, preferredId);
+            return String.format("context in the Trait %s (preferred id: %d)", traitClass, preferredId);
         }
     }
     
@@ -276,7 +276,7 @@ public class TraitFactory {
 		private static final long serialVersionUID = 5356800492346200764L;
 
 		SharedContextException(ContextKey<?> key, Class<? extends Trait> topLevel) {
-            super(String.format("Trait context %mochadoom.s is not initialized when used by %mochadoom.s or"
+            super(String.format("Trait context %s is not initialized when used by %s or"
                 + "is dereferencing a null pointer when required to do not",
                 key, topLevel));
         }        

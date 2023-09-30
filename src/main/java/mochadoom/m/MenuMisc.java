@@ -49,7 +49,7 @@ public abstract class MenuMisc{
             handle.write(source, 0, length);
             handle.close();
         } catch (Exception e) {
-            DoomSystem.MiscError("Couldn't write file %mochadoom.s (%mochadoom.s)", name, e.getMessage());
+            DoomSystem.MiscError("Couldn't write file %s (%s)", name, e.getMessage());
             return false;
         }
 
@@ -63,7 +63,7 @@ public abstract class MenuMisc{
             source.write(handle);
             handle.close();
         } catch (Exception e) {
-            DoomSystem.MiscError("Couldn't write file %mochadoom.s (%mochadoom.s)", name, e.getMessage());
+            DoomSystem.MiscError("Couldn't write file %s (%s)", name, e.getMessage());
             return false;
         }
 
@@ -88,7 +88,7 @@ public abstract class MenuMisc{
             handle.read(buf.array());
             handle.close();
         } catch (Exception e) {
-            DoomSystem.MiscError("Couldn't read file %mochadoom.s (%mochadoom.s)", name, e.getMessage());
+            DoomSystem.MiscError("Couldn't read file %s (%s)", name, e.getMessage());
             return null;
         }
 
@@ -113,7 +113,7 @@ public abstract class MenuMisc{
                     + length);
 
         } catch (Exception e) {
-            DoomSystem.MiscError("Couldn't read file %mochadoom.s (%mochadoom.s)", name, e.getMessage());
+            DoomSystem.MiscError("Couldn't read file %s (%s)", name, e.getMessage());
             return -1;
         }
         System.arraycopy(buf, 0, buffer, 0, Math.min(count,buffer.length));

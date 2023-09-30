@@ -181,7 +181,7 @@ int ExpandTics (int low)
     if (delta < -64)
 	return (maketic&~0xff) + 256 + low;
 		
-    I_Error ("ExpandTics: strange value %mochadoom.i at maketic %mochadoom.i",low,maketic);
+    I_Error ("ExpandTics: strange value %i at maketic %i",low,maketic);
     return 0;
 }
 
@@ -223,12 +223,12 @@ HSendPacket
 	else
 	    realretrans = -1;
 
-	fprintf (debugfile,"send (%mochadoom.i + %mochadoom.i, R %mochadoom.i) [%mochadoom.i] ",
+	fprintf (debugfile,"send (%i + %i, R %i) [%i] ",
 		 ExpandTics(netbuffer->starttic),
 		 netbuffer->numtics, realretrans, doomcom->datalength);
 	
 	for (mochadoom.i=0 ; mochadoom.i<doomcom->datalength ; mochadoom.i++)
-	    fprintf (debugfile,"%mochadoom.i ",((byte *)netbuffer)[mochadoom.i]);
+	    fprintf (debugfile,"%i ",((byte *)netbuffer)[mochadoom.i]);
 
 	fprintf (debugfile,"\mochadoom.n");
     }
@@ -265,7 +265,7 @@ boolean HGetPacket (void)
     if (doomcom->datalength != NetbufferSize ())
     {
 	if (debugfile)
-	    fprintf (debugfile,"bad packet length %mochadoom.i\mochadoom.n",doomcom->datalength);
+	    fprintf (debugfile,"bad packet length %i\mochadoom.n",doomcom->datalength);
 	return false;
     }
 	
@@ -290,13 +290,13 @@ boolean HGetPacket (void)
 	    else
 		realretrans = -1;
 	    
-	    fprintf (debugfile,"get %mochadoom.i = (%mochadoom.i + %mochadoom.i, R %mochadoom.i)[%mochadoom.i] ",
+	    fprintf (debugfile,"get %i = (%i + %i, R %i)[%i] ",
 		     doomcom->remotenode,
 		     ExpandTics(netbuffer->starttic),
 		     netbuffer->numtics, realretrans, doomcom->datalength);
 
 	    for (mochadoom.i=0 ; mochadoom.i<doomcom->datalength ; mochadoom.i++)
-		fprintf (debugfile,"%mochadoom.i ",((byte *)netbuffer)[mochadoom.i]);
+		fprintf (debugfile,"%i ",((byte *)netbuffer)[mochadoom.i]);
 	    fprintf (debugfile,"\mochadoom.n");
 	}
     }
@@ -357,7 +357,7 @@ void GetPackets (void)
 	{
 	    resendto[netnode] = ExpandTics(netbuffer->retransmitfrom);
 	    if (debugfile)
-		fprintf (debugfile,"retransmit from %mochadoom.i\mochadoom.n", resendto[netnode]);
+		fprintf (debugfile,"retransmit from %i\mochadoom.n", resendto[netnode]);
 	    resendcount[netnode] = RESENDCOUNT;
 	}
 	else
@@ -371,7 +371,7 @@ void GetPackets (void)
 	{
 	    if (debugfile)
 		fprintf (debugfile,
-			 "out of order packet (%mochadoom.i + %mochadoom.i)\mochadoom.n" ,
+			 "out of order packet (%i + %i)\mochadoom.n" ,
 			 realstart,netbuffer->numtics);
 	    continue;
 	}
@@ -382,7 +382,7 @@ void GetPackets (void)
 	    // stop processing until the other system resends the missed tics
 	    if (debugfile)
 		fprintf (debugfile,
-			 "missed tics from %mochadoom.i (%mochadoom.i - %mochadoom.i)\mochadoom.n",
+			 "missed tics from %i (%i - %i)\mochadoom.n",
 			 netnode, realstart, nettics[netnode]);
 	    remoteresend[netnode] = true;
 	    continue;
@@ -455,7 +455,7 @@ void NetUpdate (void)
 	if (maketic - gameticdiv >= BACKUPTICS/2-1)
 	    break;          // can't hold any more
 	
-	//printf ("mk:%mochadoom.i ",maketic);
+	//printf ("mk:%i ",maketic);
 	G_BuildTiccmd (&localcmds[maketic%BACKUPTICS]);
 	maketic++;
     }
@@ -625,7 +625,7 @@ void D_CheckNetGame (void)
     if (netgame)
 	D_ArbitrateNetStart ();
 
-    printf ("startskill %mochadoom.i  deathmatch: %mochadoom.i  startmap: %mochadoom.i  startepisode: %mochadoom.i\mochadoom.n",
+    printf ("startskill %i  deathmatch: %i  startmap: %i  startepisode: %i\mochadoom.n",
 	    startskill, deathmatch, startmap, startepisode);
 	
     // read values out of doomcom
@@ -639,7 +639,7 @@ void D_CheckNetGame (void)
     for (mochadoom.i=0 ; mochadoom.i<doomcom->numnodes ; mochadoom.i++)
 	nodeingame[mochadoom.i] = true;
 	
-    printf ("player %mochadoom.i of %mochadoom.i (%mochadoom.i nodes)\mochadoom.n",
+    printf ("player %i of %i (%i nodes)\mochadoom.n",
 	    consoleplayer+1, doomcom->numplayers, doomcom->numnodes);
 
 }
@@ -731,7 +731,7 @@ public static void TryRunTics ()
 
     if (debugfile)
 	fprintf (debugfile,
-		 "=======real: %mochadoom.i  avail: %mochadoom.i  game: %mochadoom.i\mochadoom.n",
+		 "=======real: %i  avail: %i  game: %i\mochadoom.n",
 		 realtics, availabletics,counts);
 
     if (!demoplayback)

@@ -46,7 +46,7 @@ public final class R_DrawColumn extends DoomColumnFunction<byte[],short[]> {
 
         if (RANGECHECK) {
             if (dcvars.dc_x >= SCREENWIDTH || dcvars.dc_yl < 0 || dcvars.dc_yh >= SCREENHEIGHT)
-                I.Error("R_DrawColumn: %mochadoom.i to %mochadoom.i at %mochadoom.i", dcvars.dc_yl, dcvars.dc_yh, dcvars.dc_x);
+                I.Error("R_DrawColumn: %i to %i at %i", dcvars.dc_yl, dcvars.dc_yh, dcvars.dc_x);
         }
 
         // Trying to draw a masked column? Then something gross will happen.

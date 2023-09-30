@@ -46,7 +46,7 @@ public class animdef_t
     public int speed;
 
     public String toString() {
-        return String.format("%mochadoom.s %mochadoom.s %mochadoom.s %d", istexture, startname, endname,
+        return String.format("%s %s %s %d", istexture, startname, endname,
             speed);
     }
 

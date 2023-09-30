@@ -51,8 +51,8 @@ public final static String  LOADNET ="you can't do load while in a net game!\n\n
 public final static String  QLOADNET="you can't quickload during a netgame!\n\n"+PRESSKEY;
 public final static String  QSAVESPOT="you haven't picked a quicksave slot yet!\n\n"+PRESSKEY;
 public final static String  SAVEDEAD ="you can't save if you aren't playing!\n\n"+PRESSKEY;
-public final static String  QSPROMPT ="quicksave over your game named\n\n'%mochadoom.s'?\n\n"+PRESSYN;
-public final static String  QLPROMPT="do you want to quickload the game named\n\n'%mochadoom.s'?\n\n"+PRESSYN;
+public final static String  QSPROMPT ="quicksave over your game named\n\n'%s'?\n\n"+PRESSYN;
+public final static String  QLPROMPT="do you want to quickload the game named\n\n'%s'?\n\n"+PRESSYN;
 
 public final static String  NEWGAME = "you can't start a new game\nwhile in a network game.\n\n"+PRESSKEY;
 

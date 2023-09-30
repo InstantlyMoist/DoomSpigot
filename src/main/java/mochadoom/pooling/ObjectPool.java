@@ -45,7 +45,7 @@ public abstract class ObjectPool<K>
                 {
                 	// object has expired
                 	if (t instanceof mobj_t)
-                	if (D) System.out.printf("Object %mochadoom.s expired\n",t.toString());
+                	if (D) System.out.printf("Object %s expired\n",t.toString());
                     unlocked.remove(t);
                     expire(t);
                     t = null;
@@ -56,7 +56,7 @@ public abstract class ObjectPool<K>
                         unlocked.remove(t);
                         locked.put(t, Long.valueOf(now));
                         if (D) if (t instanceof mobj_t)
-                        	System.out.printf("Object %mochadoom.s reused\n",t.toString());
+                        	System.out.printf("Object %s reused\n",t.toString());
                         return t;
                     }
                     
@@ -76,7 +76,7 @@ public abstract class ObjectPool<K>
     public synchronized void checkIn(K t)
     {
     	if (D) if (t instanceof mobj_t)
-    	System.out.printf("Object %mochadoom.s returned to the pool\n",t.toString());
+    	System.out.printf("Object %s returned to the pool\n",t.toString());
         locked.remove(t);
         unlocked.put(t, Long.valueOf(System.currentTimeMillis()));
     }

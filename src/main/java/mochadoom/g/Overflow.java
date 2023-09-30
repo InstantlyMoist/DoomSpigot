@@ -103,18 +103,18 @@ public class Overflow {
           "SPECHIT", "REJECT", "INTERCEPT", "PLYERINGAME", "DONUT", "MISSEDBACKSIDE"};
 
         static const char str1[] =
-          "Too big or not supported %mochadoom.s overflow has been detected. "
+          "Too big or not supported %s overflow has been detected. "
           "Desync or crash can occur soon "
-          "or during playback with the vanilla engine in case you're recording mochadoom.demo.%mochadoom.s%mochadoom.s";
+          "or during playback with the vanilla engine in case you're recording mochadoom.demo.%s%s";
         
         static const char str2[] = 
-          "%mochadoom.s overflow has been detected.%mochadoom.s%mochadoom.s";
+          "%s overflow has been detected.%s%s";
 
         static const char str3[] = 
-          "%mochadoom.s overflow has been detected. "
+          "%s overflow has been detected. "
           "The option responsible for emulation of this overflow is switched off "
           "hence desync or crash can occur soon "
-          "or during playback with the vanilla engine in case you're recording mochadoom.demo.%mochadoom.s%mochadoom.s";
+          "or during playback with the vanilla engine in case you're recording mochadoom.demo.%s%s";
 
         overflows[overflow].promted = true;
 
@@ -333,7 +333,7 @@ public class Overflow {
               
             default:
               fprintf(stderr, "SpechitOverrun: Warning: unable to emulate"
-                              "an overrun where numspechit=%mochadoom.i\mochadoom.n",
+                              "an overrun where numspechit=%i\mochadoom.n",
                                numspechit);
               break;
             }
@@ -357,7 +357,7 @@ public class Overflow {
 
             default:
               lprintf(LO_ERROR, "SpechitOverrun: Warning: unable to emulate"
-                                " an overrun where numspechit=%mochadoom.i\mochadoom.n",
+                                " an overrun where numspechit=%i\mochadoom.n",
                                 numspechit);
               break;
             }

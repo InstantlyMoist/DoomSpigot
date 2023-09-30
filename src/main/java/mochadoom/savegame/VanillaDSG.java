@@ -76,7 +76,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame {
             return terminator == 0x1D;
         } catch (IOException e) {
             Loggers.getLogger(VanillaDSG.class.getName()).log(Level.WARNING, e, () -> 
-                String.format("Error while loading mochadoom.savegame! Cause: %mochadoom.s", e.getMessage()));
+                String.format("Error while loading mochadoom.savegame! Cause: %s", e.getMessage()));
             return false; // Needed to shut up compiler.
         }
 
@@ -533,7 +533,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame {
             if (th.p_target != 0) {
                 th.target = pointindex.get(th.p_target);
                 th.tracer = pointindex.get(th.p_tracer);
-                // System.out.printf("Object %mochadoom.s has target %mochadoom.s\mochadoom.n",th.type.toString(),th.target.type.toString());
+                // System.out.printf("Object %s has target %s\mochadoom.n",th.type.toString(),th.target.type.toString());
             }
         });
     }
@@ -847,7 +847,7 @@ public class VanillaDSG<T, V> implements IDoomSaveGame {
             f.write(0x1D);
         } catch (IOException e) {
             Loggers.getLogger(VanillaDSG.class.getName()).log(Level.WARNING, e, () -> 
-                String.format("Error while saving mochadoom.savegame! Cause: %mochadoom.s", e.getMessage()));
+                String.format("Error while saving mochadoom.savegame! Cause: %s", e.getMessage()));
             return false; // Needed to shut up compiler.
         }
         return true;

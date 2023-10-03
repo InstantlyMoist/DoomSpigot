@@ -75,23 +75,6 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>> {
         }
         return Optional.empty();
     }
-
-    /**
-     * NASTY hack to hide the cursor.
-     *
-     * Create a 'hidden' cursor by using a transparent image
-     * ...return the invisible cursor
-     * @author vekltron
-     */
-    private Cursor createHiddenCursor() {
-        final Toolkit tk = Toolkit.getDefaultToolkit();
-        final Dimension dim = tk.getBestCursorSize(2, 2);
-        if (dim.width == 0 || dim.height == 0) {
-            return this.initialCursor;
-        }
-        final BufferedImage transparent = new BufferedImage(dim.width, dim.height, BufferedImage.TYPE_INT_ARGB);
-        return tk.createCustomCursor(transparent, new Point(1, 1), "HiddenCursor");
-    }
     
     /**
      * This event here is used as a static scratch copy. When sending out
@@ -108,11 +91,7 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>> {
      * Shared state of keys
      */
     protected final KeyStateHolder<Handler> keyStateHolder;
-    
-    /**
-     * Component (Canvas or JPanel, for exaple) to deal with
-     */
-    protected final Component component;
+
     
     /**
      * This one will be given all event_t'mochadoom.s we produce there
@@ -130,26 +109,13 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>> {
     private final ActionStateHolder<Handler> actionStateHolder;
     
     /**
-     * Presumably a system Cursor, that is to be used on cursor restore.
-     */
-    private final Cursor initialCursor;
-
-    /**
-     * Ivisible cursor on the systems who support changing cursors
-     */
-    private final Cursor hiddenCursor;
-    
-    /**
      * To construct the Observer you only need to provide it with the class of Enum used
      * to contain dictinary, the Component it will be working on and acceptor of event_t'mochadoom.s
      */
-    public EventObserver(Class<Handler> handlerClass, Component component, Consumer<? super event_t> doomEventConsumer) {
+    public EventObserver(Class<Handler> handlerClass, Consumer<? super event_t> doomEventConsumer) {
         this.actionStateHolder = new ActionStateHolder<>(handlerClass, this);
         this.eventSortedHandlers = sortHandlers(handlerClass.getEnumConstants());
         this.doomEventConsumer = doomEventConsumer;
-        this.component = component;
-        this.initialCursor = component.getCursor();
-        this.hiddenCursor = createHiddenCursor();
         this.keyStateHolder = new KeyStateHolder<>();
     }
     
@@ -224,15 +190,15 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>> {
      * Restore default system cursor over the window
      */
     protected void restoreCursor(final AWTEvent event) {
-        component.setCursor(initialCursor);
+//        component.setCursor(initialCursor);
     }
 
     /**
      * Hide cursor
      */
     protected void modifyCursor(final AWTEvent event) {
-        component.getInputContext().selectInputMethod(java.util.Locale.US);
-        component.setCursor(hiddenCursor);
+//        component.getInputContext().selectInputMethod(java.util.Locale.US);
+//        component.setCursor(hiddenCursor);
     }
 
     /**
@@ -242,11 +208,11 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>> {
      *  - Good Sign 2017/04/24
      */
     protected void centreCursor(final AWTEvent event) {
-        final int centreX = component.getWidth() >> 1;
-        final int centreY = component.getHeight() >> 1;
-        if (component.isShowing()) {
-            MOUSE_ROBOT.ifPresent(rob -> mouseEvent.resetIn(rob, component.getLocationOnScreen(), centreX, centreY));
-        }
+//        final int centreX = component.getWidth() >> 1;
+//        final int centreY = component.getHeight() >> 1;
+//        if (component.isShowing()) {
+//            MOUSE_ROBOT.ifPresent(rob -> mouseEvent.resetIn(rob, component.getLocationOnScreen(), centreX, centreY));
+//        }
         modifyCursor(event);
     }
 

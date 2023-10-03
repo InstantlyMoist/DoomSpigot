@@ -311,13 +311,13 @@ public enum EventHandler implements EventBase<EventHandler> {
                 return;
             }
 
-            final int centreX = observer.component.getWidth() >> 1, centreY = observer.component.getHeight() >> 1;
-            if (observer.component.isShowing() && EventObserver.MOUSE_ROBOT.isPresent()) {
-                final Point offset = observer.component.getLocationOnScreen();
-                observer.mouseEvent.moveIn((MouseEvent) ev, EventObserver.MOUSE_ROBOT.get(), offset, centreX, centreY, isDrag);
-            } else {
-                observer.mouseEvent.moveIn((MouseEvent) ev, centreX, centreY, isDrag);
-            }
+//            final int centreX = observer.component.getWidth() >> 1, centreY = observer.component.getHeight() >> 1;
+//            if (observer.component.isShowing() && EventObserver.MOUSE_ROBOT.isPresent()) {
+//                final Point offset = observer.component.getLocationOnScreen();
+//                observer.mouseEvent.moveIn((MouseEvent) ev, EventObserver.MOUSE_ROBOT.get(), offset, centreX, centreY, isDrag);
+//            } else {
+//                observer.mouseEvent.moveIn((MouseEvent) ev, centreX, centreY, isDrag);
+//            }
             
             if (observer.mouseEvent.processed) {
                 observer.mouseEvent.resetNotify();

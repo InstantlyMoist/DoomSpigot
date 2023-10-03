@@ -130,48 +130,4 @@ public interface FullscreenOptions {
     default void draw(Graphics2D graphics, Image image, Dimension dim, ImageObserver observer) {
         graphics.drawImage(image, dim.offsX(), dim.offsY(), dim.fitX(), dim.fitY(), null);
     }
-    
-    default FullscreenFunction createFullSwitcher(final GraphicsDevice device) {
-        switch(FULLMODE) {
-            case Best:
-                return new FullscreenSwitch(device, new DisplayModePicker(device));
-            case Native:
-                return (w, h) -> device.getDisplayMode();
-        }
-        
-        throw new Error("Enum reflection overuse?");
-    }
-    
-    @FunctionalInterface
-    interface FullscreenFunction {
-        DisplayMode get(int width, int height);
-    }
-    
-    static class FullscreenSwitch implements FullscreenFunction {
-        private final GraphicsDevice dev;
-        private final DisplayModePicker dmp;
-        private DisplayMode oldDisplayMode;
-        private DisplayMode displayMode;
-
-        private FullscreenSwitch(GraphicsDevice dev, DisplayModePicker dmp) {
-            this.dev = dev;
-            this.dmp = dmp;
-        }
-
-        @Override
-        public DisplayMode get(final int width, final int height) {
-            if (oldDisplayMode == null) {
-                // In case we need to revert.
-                oldDisplayMode = dev.getDisplayMode();
-                // TODO: what if bit depths are too small?
-                displayMode = dmp.pickClosest(width, height);
-            } else {
-                // We restore the original resolution
-                displayMode = oldDisplayMode;
-                oldDisplayMode = null;
-            }
-            
-            return displayMode;
-        }
-    }
 }

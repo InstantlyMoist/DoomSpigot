@@ -5,6 +5,7 @@ import mochadoom.doom.event_t;
 import mochadoom.Engine;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.StringTokenizer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -20,26 +21,18 @@ import java.util.function.Supplier;
  *  The idea is that the final screen rendering module sees/handles as less as
  *  possible, and only gets a screen to render, no matter what depth it is.
  */
-public interface DoomWindow<E extends DoomWindow<E>> {
-    /**
-     * Get current graphics device
-     */
-    static GraphicsDevice getDefaultDevice() {
-        return GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-    }
+public interface DoomWindow {
 
     /**
      * Get an instance of JFrame to draw anything. This will try to create compatible Canvas and
      * will bing all AWT listeners
      */
-    static DoomWindowController<CanvasWindow, EventHandler> createCanvasWindowController(
+    static DoomWindowController createCanvasWindowController(
         final Supplier<Image> imageSource,
         final Consumer<? super event_t> doomEventConsume,
         final int width, final int height
     ) {
-        final GraphicsDevice device = getDefaultDevice();
-        return new DoomWindowController<>(EventHandler.class, device, imageSource, doomEventConsume,
-            new CanvasWindow(getDefaultDevice().getDefaultConfiguration()), width, height);
+        return new DoomWindowController<>(EventHandler.class, imageSource, doomEventConsume, width, height);
     }
     
     /**
@@ -51,8 +44,8 @@ public interface DoomWindow<E extends DoomWindow<E>> {
         final Consumer<? super event_t> doomEventConsume,
         final int width, final int height
     ) {
-        return new DoomWindowController<>(EventHandler.class, getDefaultDevice(), imageSource,
-            doomEventConsume, new JPanelWindow(), width, height);
+        return new DoomWindowController<>(EventHandler.class, imageSource,
+            doomEventConsume, width, height);
     }
     
     /**
@@ -123,7 +116,7 @@ public interface DoomWindow<E extends DoomWindow<E>> {
         return true;
     }
     
-    final static class JPanelWindow extends JPanel implements DoomWindow<JPanelWindow> {
+    final static class JPanelWindow extends JPanel implements DoomWindow {
 		private static final long serialVersionUID = 4031722796186278753L;
 
 		private JPanelWindow() {
@@ -139,14 +132,6 @@ public interface DoomWindow<E extends DoomWindow<E>> {
         @Override
         public boolean isOptimizedDrawingEnabled() {
             return false;
-        }
-    }
-    
-    final static class CanvasWindow extends Canvas implements DoomWindow<CanvasWindow> {
-		private static final long serialVersionUID = 1180777361390303859L;
-
-		private CanvasWindow(GraphicsConfiguration config) {
-            super(config);
         }
     }
 }

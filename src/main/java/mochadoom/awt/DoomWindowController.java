@@ -31,16 +31,13 @@ import java.util.logging.Level;
  * DoomFrame creation, full-screen related code. Window recreation control.
  * That sort of things.
  */
-public class DoomWindowController<E extends Component & DoomWindow<E>, H extends Enum<H> & EventBase<H>> implements FullscreenOptions {
+public class DoomWindowController<E extends Component & DoomWindow, H extends Enum<H> & EventBase<H>> implements FullscreenOptions {
     private static final long ALL_EVENTS_MASK = 0xFFFF_FFFF_FFFF_FFFFL;
 
-    final GraphicsDevice device;
-    final FullscreenFunction switcher;
     final int defaultWidth, defaultHeight;
 
-    private final E component;
     private final EventObserver<H> observer;
-    public DoomFrame<E> doomFrame;
+    public DoomFrame doomFrame;
 
     /**
      * Default window size. It might change upon entering full screen, so don't consider it absolute. Due to letter
@@ -51,21 +48,16 @@ public class DoomWindowController<E extends Component & DoomWindow<E>, H extends
 
     DoomWindowController(
         final Class<H> handlerClass,
-        final GraphicsDevice device,
         final Supplier<Image> imageSource,
         final Consumer<? super event_t> doomEventConsumer,
-        final E component,
         final int defaultWidth,
         final int defaultHeight
     ) {
-        this.device = device;
-        this.switcher = createFullSwitcher(device);
-        this.component = component;
         this.defaultWidth = defaultWidth;
         this.defaultHeight = defaultHeight;
         this.dimension = new DimensionImpl(defaultWidth, defaultHeight);
-        this.doomFrame = new DoomFrame<>(dimension, component, imageSource);
-        this.observer = new EventObserver<>(handlerClass, component, doomEventConsumer);
+        this.doomFrame = new DoomFrame(dimension, imageSource);
+        this.observer = new EventObserver<>(handlerClass, doomEventConsumer);
         Toolkit.getDefaultToolkit().addAWTEventListener(observer::observe, ALL_EVENTS_MASK);
         sizeInit();
         doomFrame.turnOn();
@@ -95,7 +87,7 @@ public class DoomWindowController<E extends Component & DoomWindow<E>, H extends
         Loggers.getLogger(DoomFrame.class.getName()).log(Level.WARNING, "FULLSCREEN SWITHED");
         // remove the frame from view
 //        doomFrame.dispose();
-        doomFrame = new DoomFrame<>(dimension, component, doomFrame.imageSupplier);
+        doomFrame = new DoomFrame(dimension, doomFrame.imageSupplier);
         // change all the properties
         final boolean ret = switchToFullScreen();
         // now show back the frame
@@ -111,34 +103,14 @@ public class DoomWindowController<E extends Component & DoomWindow<E>, H extends
      * Therefore, a "best fit" strategy with centering is used.
      */
     public final boolean switchToFullScreen() {
-        if (!isFullScreen) {
-            isFullScreen = device.isFullScreenSupported();
-            if (!isFullScreen) {
-                return false;
-            }
-        } else {
-            isFullScreen = false;
-        }
-        final DisplayMode displayMode = switcher.get(defaultWidth, defaultHeight);
-//        doomFrame.setUndecorated(isFullScreen);
-
-        // Full-screen mode
-//        device.setFullScreenWindow(isFullScreen ? doomFrame : null);
-        if (device.isDisplayChangeSupported()) {
-            device.setDisplayMode(displayMode);
-        }
-
-        component.validate();
-        dimension.setSize(displayMode);
-        updateSize();
-        return isFullScreen;
+       return true;
     }
 
     private void updateSize() {
 //        doomFrame.setPreferredSize(isFullscreen() ? dimension : null);
-        component.setPreferredSize(dimension);
-        component.setBounds(0, 0, defaultWidth - 1, defaultHeight - 1);
-        component.setBackground(Color.black);
+//        component.setPreferredSize(dimension);
+//        component.setBounds(0, 0, defaultWidth - 1, defaultHeight - 1);
+//        component.setBackground(Color.black);
         doomFrame.renewGraphics();
     }
 

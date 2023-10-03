@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 public class PlayerInteractEntityListener implements Listener {
 
-    private DoomPlugin plugin;
+    private final DoomPlugin plugin;
 
     public PlayerInteractEntityListener(DoomPlugin plugin) {
         this.plugin = plugin;
@@ -21,6 +21,6 @@ public class PlayerInteractEntityListener implements Listener {
     public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
         Player player = event.getPlayer();
         Pocket pocket = plugin.getPlayerHandler().getPocket(player);
-//        if (!pocket.isEmpty()) event.setCancelled(true);
+        if (pocket.getEngine() != null) event.setCancelled(true);
     }
 }

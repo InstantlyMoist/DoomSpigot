@@ -30,23 +30,19 @@ public class Pocket {
     @Setter
     private Entity arrow;
 
-    private String gameFileWithoutExtension;
-
     public void loadEmulator(DoomPlugin plugin, Player player) {
         this.plugin = plugin;
 
-        createSavesFolder(plugin, player);
-
         image = new BufferedImage(128, 128, BufferedImage.TYPE_INT_RGB);
 
-        String doomPath = Paths.get(plugin.getDataFolder().getAbsolutePath(), "DOOM2.WAD").toString();
+        String doomPath = Paths.get(plugin.getDataFolder().getAbsolutePath(), plugin.getConfig().getString("wad_name")).toString();
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
                 engine = new Engine(plugin, player, "-iwad", doomPath);
                 engine.run();
             } catch (Exception e) {
-                Bukkit.getLogger().info("GAMEBOY: error");
+                Bukkit.getLogger().info("DOOM: error");
                 e.printStackTrace();
             }
         });
@@ -65,15 +61,11 @@ public class Pocket {
     }
 
     public void stopEmulator(Player player) {
-        if (plugin.isProtocolLib()) {
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    arrow.remove();
-                    arrow = null;
-                }
-            }.runTask(plugin);
-        }
+        Bukkit.getScheduler().runTask(plugin, () -> {
+            arrow.remove();
+            arrow = null;
+        });
+
         player.getInventory().setItemInMainHand(handItem);
         handItem = null;
 
@@ -82,10 +74,5 @@ public class Pocket {
 
         arrowDespawnHandler.cancel();
         arrowDespawnHandler = null;
-    }
-
-    public void createSavesFolder(DoomPlugin plugin, Player player) {
-        File savesFolder = new File(plugin.getDataFolder(), "saves/" + player.getUniqueId().toString() + "/" + gameFileWithoutExtension + ".sav");
-        savesFolder.mkdirs();
     }
 }

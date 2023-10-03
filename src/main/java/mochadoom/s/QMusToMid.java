@@ -78,7 +78,7 @@ public class QMusToMid {
 	    {
 	      System.out.println("ERROR : Track buffer full.\n"+
 	             "Increase the track buffer size (option -size).\n" ) ;
-	      System.exit(1);
+	      //System.exit(1);
 	    }
 	  track[MIDItrack].current++ ;
 	}

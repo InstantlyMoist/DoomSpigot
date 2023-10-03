@@ -220,7 +220,7 @@ public interface ActionsPlats extends ActionsMoveEvents, ActionsUseEvents {
             AddActivePlat(plat);
         } else {
             Plats.LOGGER.log(Level.SEVERE, "P_AddActivePlat: no more plats!");
-            System.exit(1);
+            //System.exit(1);
         }
     }
 
@@ -238,7 +238,7 @@ public interface ActionsPlats extends ActionsMoveEvents, ActionsUseEvents {
         }
 
         Plats.LOGGER.log(Level.SEVERE, "P_RemoveActivePlat: can't find plat!");
-        System.exit(1);
+        //System.exit(1);
     }
 
     default void ClearPlatsBeforeLoading() {

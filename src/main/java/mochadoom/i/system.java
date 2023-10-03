@@ -203,6 +203,6 @@ public static void Error (String error, Object ... args)
     //D_QuitNetGame ();
     //I_ShutdownGraphics();
     
-    System.exit(-1);
+    //System.exit(-1);
 }
 }

@@ -465,7 +465,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
                 StartButton(line, w, texture, time);
             } else {
                 LOGGER.log(Level.SEVERE, "P_StartButton: no button slots left!");
-                System.exit(1);
+                //System.exit(1);
             }
         }
 

@@ -179,9 +179,7 @@ public class EventObserver<Handler extends Enum<Handler> & EventBase<Handler>> {
      * So there are all user key interests checked.
      */
     public void feed(final event_t ev) {
-        System.out.println("feed");
         if (!ev.ifKey(sc -> keyStateHolder.notifyKeyChange(this, sc, ev.isType(evtype_t.ev_keydown)))) {
-            System.out.println("feed accepted");
             doomEventConsumer.accept(ev);
         }
     }

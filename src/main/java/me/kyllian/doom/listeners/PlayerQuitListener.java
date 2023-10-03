@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class PlayerQuitListener implements Listener {
 
-    private DoomPlugin plugin;
+    private final DoomPlugin plugin;
 
     public PlayerQuitListener(DoomPlugin plugin) {
         this.plugin = plugin;
@@ -21,7 +21,7 @@ public class PlayerQuitListener implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         Pocket pocket = plugin.getPlayerHandler().getPocket(player);
-//        if (!pocket.isEmpty()) pocket.stopEmulator(player);
-//        plugin.getPlayerHandler().removePocket(player);
+        if (pocket.getEngine() != null) pocket.stopEmulator(player);
+        plugin.getPlayerHandler().removePocket(player);
     }
 }

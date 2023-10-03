@@ -51,10 +51,10 @@ public class MapHandlerNew implements MapHandler {
         if (!file.exists()) plugin.saveResource("maps.yml", false);
         FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(file);
         List<Integer> maps = fileConfiguration.getIntegerList("maps");
-        int mapAmount = plugin.getConfig().getInt("gameboys");
+        int mapAmount = plugin.getConfig().getInt("maps");
         int currentMapAmount = maps.size();
         if (mapAmount > currentMapAmount) {
-            Bukkit.getLogger().info("Gameboy didn't find existing, predefined maps. Generating them, this may take some time...");
+            Bukkit.getLogger().info("Doom didn't find existing, predefined maps. Generating them, this may take some time...");
             World world = Bukkit.getWorlds().get(0);
             for (int i = 0; i != mapAmount - currentMapAmount; i++) {
                 MapView mapView = Bukkit.createMap(world);

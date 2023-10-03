@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 
 public class PlayerSwapHandItemsListener implements Listener {
 
-    private DoomPlugin plugin;
+    private final DoomPlugin plugin;
 
     public PlayerSwapHandItemsListener(DoomPlugin plugin) {
         this.plugin = plugin;
@@ -21,8 +21,7 @@ public class PlayerSwapHandItemsListener implements Listener {
     public void onPlayerSwapHandItems(PlayerSwapHandItemsEvent event) {
         Player player = event.getPlayer();
         Pocket pocket = plugin.getPlayerHandler().getPocket(player);
-//        if (pocket.isEmpty()) return;
-//        event.setCancelled(true);
-//        pocket.getButtonToggleHelper().press(ButtonListener.Button.START, true);
+        if (pocket.getEngine() != null) return;
+        event.setCancelled(true);
     }
 }

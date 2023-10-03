@@ -168,7 +168,7 @@ public final class C2JUtils {
             e.printStackTrace();
             System.err.println("Failure to allocate " + os.length
                     + " objects of class" + c.getName() + "!");
-            System.exit(-1);
+            //System.exit(-1);
         }
     }
 
@@ -194,7 +194,7 @@ public final class C2JUtils {
             System.err.println("Failure to allocate " + os.length
                     + " objects of class " + c.getName() + "!");
 
-            System.exit(-1);
+            //System.exit(-1);
         }
     }
 
@@ -229,7 +229,7 @@ public final class C2JUtils {
         } catch (IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
             System.err.println("Failure to instantiate " + os.length + " objects of class " + c.getName() + "!");
-            System.exit(-1);
+            //System.exit(-1);
         }
 
         return os;
@@ -265,7 +265,7 @@ public final class C2JUtils {
             e.printStackTrace();
             System.err.println("Failure to instantiate " + os.length
                     + " objects of class " + c.getName() + "!");
-            System.exit(-1);
+            //System.exit(-1);
         }
 
         return os;
@@ -296,7 +296,7 @@ public final class C2JUtils {
             System.err.println("Failure to allocate " + os.length
                     + " objects of class " + c.getName() + "!");
 
-            System.exit(-1);
+            //System.exit(-1);
         }
     }
 
@@ -766,7 +766,7 @@ public final class C2JUtils {
             e.printStackTrace();
             System.err.println("Failure to allocate " + size
                 + " objects of class " + c.getName() + "!");
-            System.exit(-1);
+            //System.exit(-1);
         }
 
         return null;
@@ -786,7 +786,7 @@ public final class C2JUtils {
             e.printStackTrace();
             System.err.println("Failure to allocate " + size
                     + " objects of class " + c.getName() + "!");
-            System.exit(-1);
+            //System.exit(-1);
         }
         
         return null;

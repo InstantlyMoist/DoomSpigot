@@ -10,14 +10,11 @@ import java.util.List;
 
 public class MessageHandler {
 
-    private final DoomPlugin plugin;
-
     private final File file;
     private FileConfiguration fileConfiguration;
 
 
     public MessageHandler(DoomPlugin plugin) {
-        this.plugin = plugin;
         file = new File(plugin.getDataFolder(), "messages.yml");
         if (!file.exists()) plugin.saveResource("messages.yml", false);
         reload();
@@ -31,7 +28,7 @@ public class MessageHandler {
         Object object = fileConfiguration.get(path);
         String finalString = "";
         if (object instanceof List) finalString = String.join("\n",(List<String>) object);
-        else finalString += ((String) object).replace("\\mochadoom.n", "\n");
+        else finalString += ((String) object).replace("\\n", "\n");
         return translateColor(finalString);
     }
 

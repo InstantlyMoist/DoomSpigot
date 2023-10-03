@@ -2724,7 +2724,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
         {
             if (!doomSystem.GenerateAlert(Strings.MODIFIED_GAME_TITLE, Strings.MODIFIED_GAME_DIALOG)) {
                 wadLoader.CloseAllHandles();
-                System.exit(-2);
+                //System.exit(-2);
             }
         }
         

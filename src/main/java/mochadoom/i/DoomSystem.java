@@ -171,7 +171,7 @@ public class DoomSystem implements IDoomSystem {
         //DM.music.ShutdownMusic();
         DM.commit();
         DM.CM.SaveDefaults();
-        System.exit(0);
+        //System.exit(0);
     }
 
     /**
@@ -238,7 +238,7 @@ public class DoomSystem implements IDoomSystem {
         }
         // DM.VI.ShutdownGraphics();
 
-        System.exit(-1);
+        //System.exit(-1);
     }
 
     @Override
@@ -258,7 +258,7 @@ public class DoomSystem implements IDoomSystem {
         //G_CheckDemoStatus();
         //D_QuitNetGame ();
         //I_ShutdownGraphics();
-        System.exit(-1);
+        //System.exit(-1);
     }
 
     // This particular implementation will generate a popup box.// 

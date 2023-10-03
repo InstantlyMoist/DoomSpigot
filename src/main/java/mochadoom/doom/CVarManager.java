@@ -156,7 +156,7 @@ public class CVarManager {
             System.out.println(String.format("Found response file %s, read %d command line variables", filename, r.cVarCount));
         } else {
             System.out.println(String.format("No such response file %s!", filename));
-            System.exit(1);
+            //System.exit(1);
         }
     }
 

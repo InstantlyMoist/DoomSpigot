@@ -10,9 +10,9 @@ import java.util.Map;
 
 public class PlayerHandler {
 
-    private DoomPlugin plugin;
+    private final DoomPlugin plugin;
 
-    private Map<Player, Pocket> pockets;
+    private final Map<Player, Pocket> pockets;
 
     public PlayerHandler(DoomPlugin plugin) {
         this.plugin = plugin;
@@ -32,6 +32,8 @@ public class PlayerHandler {
             playerLocation.setX(playerLocation.getBlockX() + 0.5);
             playerLocation.setY(playerLocation.getBlockY());
             playerLocation.setZ(playerLocation.getBlockZ() + 0.5);
+            playerLocation.setPitch(0);
+            playerLocation.setYaw(0);
             player.teleport(playerLocation);
         } catch (Exception exception) {
             exception.printStackTrace();

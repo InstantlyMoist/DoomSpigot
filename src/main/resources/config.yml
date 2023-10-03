@@ -1,9 +1,9 @@
-# Gameboy for spigot
+# Doom for spigot
 #
 # For support: https://kyllian.nl/discord
 
-gameboys: 100
-
-button_debounce: 150
+maps: 10
 
 tick_update_delay: 1
+
+wad_name: "DOOM2.WAD" # Placed in the plugin folder

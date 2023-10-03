@@ -41,6 +41,7 @@ public class Engine {
     private static volatile Engine instance;
     private DoomPlugin plugin;
     private Player player;
+    public boolean running = true;
     
     public final CVarManager cvm;
     public final ConfigManager cm;
@@ -108,7 +109,9 @@ public class Engine {
                 return WANTS_MORE_PASS;
             }, SC_PAUSE)
         );
+    }
 
+    public void run() {
         try {
             instance.DOOM.setupLoop();
         } catch(Exception e) {

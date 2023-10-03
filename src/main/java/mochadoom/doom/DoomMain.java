@@ -404,7 +404,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
             view = sceneRenderer.getView();
         }
         
-        while (true) {
+        while (Engine.getEngine().running) {
             // frame syncronous IO operations
             I_StartFrame:;
             
@@ -449,6 +449,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
             soundDriver.SubmitSound();
             //#endif
         }
+        doomSound.PauseSound();
     }
     
     // To keep an "eye" on the renderer.

@@ -1,5 +1,6 @@
 package me.kyllian.doom;
 
+import lombok.Getter;
 import me.kyllian.doom.commands.DoomExecutor;
 import me.kyllian.doom.data.Pocket;
 import me.kyllian.doom.handlers.MessageHandler;
@@ -8,6 +9,7 @@ import me.kyllian.doom.handlers.RomHandler;
 import me.kyllian.doom.handlers.map.MapHandler;
 import me.kyllian.doom.handlers.map.MapHandlerFactory;
 import me.kyllian.doom.listeners.*;
+import me.kyllian.doom.listeners.packets.SteerVehicleListener;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.AdvancedPie;
 import org.bstats.charts.SingleLineChart;
@@ -17,6 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public class DoomPlugin extends JavaPlugin {
 
     private int gamesEmulated = 0;
@@ -59,14 +62,14 @@ public class DoomPlugin extends JavaPlugin {
         new DoomExecutor(this);
 
         new PlayerDropItemListener(this);
+        new PlayerHeldItemListener(this);
         new PlayerInteractEntityListener(this);
         new PlayerInteractListener(this);
         new PlayerItemHeldListener(this);
-        if (!protocolLib) new PlayerMoveListener(this);
         new PlayerQuitListener(this);
         new PlayerSwapHandItemsListener(this);
 
-//        if (protocolLib) new SteerVehicleListener(this);
+        new SteerVehicleListener(this);
     }
 
     @Override
@@ -75,31 +78,7 @@ public class DoomPlugin extends JavaPlugin {
 
         Bukkit.getOnlinePlayers().forEach(player -> {
             Pocket pocket = playerHandler.getPocket(player);
-//            if (!pocket.isEmpty()) pocket.stopEmulator(player);
+            if (pocket.getEngine() != null) pocket.stopEmulator(player);
         });
-    }
-
-    public MapHandler getMapHandler() {
-        return mapHandler;
-    }
-
-    public MessageHandler getMessageHandler() {
-        return messageHandler;
-    }
-
-    public PlayerHandler getPlayerHandler() {
-        return playerHandler;
-    }
-
-    public RomHandler getRomHandler() {
-        return romHandler;
-    }
-
-    public void notifyEmulate() {
-        gamesEmulated++;
-    }
-
-    public boolean isProtocolLib() {
-        return protocolLib;
     }
 }

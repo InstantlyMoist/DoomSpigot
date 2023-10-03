@@ -94,6 +94,8 @@ public class MapHandlerNew implements MapHandler {
 
         if (mapView.getRenderers() != null) mapView.getRenderers().clear();
 
+        final Pocket pocket = plugin.getPlayerHandler().getPocket(player);
+
         MapRenderer renderer = new MapRenderer() {
             final Pocket pocket = plugin.getPlayerHandler().getPocket(player);
 
@@ -106,20 +108,9 @@ public class MapHandlerNew implements MapHandler {
         mapView.addRenderer(renderer);
 
         int tickDelay = plugin.getConfig().getInt("tick_update_delay", 1);
-        new BukkitRunnable() {
-            final Pocket pocket = plugin.getPlayerHandler().getPocket(player);
-
-            @Override
-            public void run() {
-//                if (pocket.getEmulator() == null) {
-//                    mapView.removeRenderer(renderer);
-//                    cancel();
-//                    return;
-//                }
-                player.sendMap(mapView);
-            }
-        }.runTaskTimer(plugin, tickDelay, tickDelay);
-
+        Bukkit.getScheduler().runTaskTimer(plugin, () -> {
+            player.sendMap(mapView);
+        }, tickDelay, tickDelay);
 
         map.setItemMeta(mapMeta);
         player.getInventory().setItemInMainHand(map);

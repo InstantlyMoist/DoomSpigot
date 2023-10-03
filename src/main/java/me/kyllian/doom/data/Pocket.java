@@ -3,7 +3,6 @@ package me.kyllian.doom.data;
 import lombok.Getter;
 import lombok.Setter;
 import me.kyllian.doom.DoomPlugin;
-import me.kyllian.doom.helpers.ButtonToggleHelper;
 import mochadoom.Engine;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
@@ -14,6 +13,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.nio.file.Paths;
 
 @Getter
 public class Pocket {
@@ -24,8 +24,6 @@ public class Pocket {
 
     private Engine engine;
     public BufferedImage image;
-
-    private ButtonToggleHelper buttonToggleHelper;
 
     private ItemStack handItem = null;
 
@@ -38,26 +36,20 @@ public class Pocket {
         this.plugin = plugin;
 
         createSavesFolder(plugin, player);
-        File saveFile = new File(plugin.getDataFolder(), "saves/" + player.getUniqueId() + "/" + gameFileWithoutExtension + ".sav");
 
         image = new BufferedImage(128, 128, BufferedImage.TYPE_INT_RGB);
 
+        String doomPath = Paths.get(plugin.getDataFolder().getAbsolutePath(), "DOOM2.WAD").toString();
+
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
-                // TODO: Start emulator here!
-                System.out.println("Looking at " + plugin.getDataFolder().getAbsolutePath() + "\\DOOM2.WAD");
-                engine = new Engine(plugin, player, "-iwad", plugin.getDataFolder().getAbsolutePath() + "\\DOOM2.WAD");
-//            emulator = new Emulator(gameFile, saveFile, player);
-//            emulator.run();
+                engine = new Engine(plugin, player, "-iwad", doomPath);
+                engine.run();
             } catch (Exception e) {
                 Bukkit.getLogger().info("GAMEBOY: error");
                 e.printStackTrace();
             }
         });
-
-
-
-//        buttonToggleHelper = new ButtonToggleHelper(plugin, emulator);
 
         handItem = player.getInventory().getItemInMainHand();
 
@@ -85,9 +77,8 @@ public class Pocket {
         player.getInventory().setItemInMainHand(handItem);
         handItem = null;
 
-//        emulator.stop();
-
-        buttonToggleHelper.cancel();
+        engine.running = false;
+        engine = null;
 
         arrowDespawnHandler.cancel();
         arrowDespawnHandler = null;

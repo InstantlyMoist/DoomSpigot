@@ -80,6 +80,8 @@ public class MapHandlerOld implements MapHandler {
         MapView mapView = null;
         Class bukkitClass = null;
 
+        final Pocket pocket = plugin.getPlayerHandler().getPocket(player);
+
         try {
             bukkitClass = Class.forName("org.bukkit.Bukkit");
             Method getMapInt = bukkitClass.getMethod("getMap", int.class);
@@ -96,36 +98,23 @@ public class MapHandlerOld implements MapHandler {
 
         MapRenderer renderer = new MapRenderer() {
             final Pocket pocket = plugin.getPlayerHandler().getPocket(player);
-
             @Override
             public void render(MapView mapView, MapCanvas mapCanvas, Player player) {
-//                Emulator emulator = pocket.getEmulator();
-//
-//                byte[] rgb = emulator.getDisplay().freeBufferArrayByte;
-//                for (int x = 0; x < 128; x++) {
-//                    for (int y = 0; y < 128; y++) {
-//                        mapCanvas.setPixel(x, y, rgb[x + (y * 128)]);
-//                    }
-//                }
+                mapCanvas.drawImage(0, 0, pocket.getImage());
             }
         };
 
         mapView.addRenderer(renderer);
-        MapView finalMapView = mapView;
 
         int tickDelay = plugin.getConfig().getInt("tick_update_delay", 1);
-        new BukkitRunnable() {
-            final Pocket pocket = plugin.getPlayerHandler().getPocket(player);
-            @Override
-            public void run() {
-//                if (pocket.getEmulator() == null) {
-//                    finalMapView.removeRenderer(renderer);
-//                    cancel();
-//                    return;
-//                }
-                player.sendMap(finalMapView);
-            }
-        }.runTaskTimer(plugin, tickDelay, tickDelay);
+        MapView finalMapView = mapView;
+        Bukkit.getScheduler().runTaskTimer(plugin, () -> {
+//            if (pocket.getEngine() == null) {
+//                finalMapView.removeRenderer(renderer);
+//                return;
+//            }
+            player.sendMap(finalMapView);
+        }, tickDelay, tickDelay);
 
         player.getInventory().setItemInMainHand(map);
     }

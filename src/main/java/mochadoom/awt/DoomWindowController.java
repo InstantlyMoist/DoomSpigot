@@ -40,7 +40,7 @@ public class DoomWindowController<E extends Component & DoomWindow<E>, H extends
 
     private final E component;
     private final EventObserver<H> observer;
-    private DoomFrame<E> doomFrame;
+    public DoomFrame<E> doomFrame;
 
     /**
      * Default window size. It might change upon entering full screen, so don't consider it absolute. Due to letter

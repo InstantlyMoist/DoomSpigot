@@ -5,7 +5,6 @@ import mochadoom.doom.event_t;
 import mochadoom.Engine;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.StringTokenizer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -21,7 +20,7 @@ import java.util.function.Supplier;
  *  The idea is that the final screen rendering module sees/handles as less as
  *  possible, and only gets a screen to render, no matter what depth it is.
  */
-public interface DoomWindow<E extends Component & DoomWindow<E>> {
+public interface DoomWindow<E extends DoomWindow<E>> {
     /**
      * Get current graphics device
      */

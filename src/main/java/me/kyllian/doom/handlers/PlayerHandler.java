@@ -21,9 +21,8 @@ public class PlayerHandler {
     }
 
     public void loadGame(Player player) {
-        //TODO: First load animation (?)
         try {
-            plugin.notifyEmulate();
+            player.getInventory().setHeldItemSlot(8);
             getPocket(player).loadEmulator(plugin, player);
             plugin.getMapHandler().sendMap(player);
             if (plugin.isProtocolLib()) return;

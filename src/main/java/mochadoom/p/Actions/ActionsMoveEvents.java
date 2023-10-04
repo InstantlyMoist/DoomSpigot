@@ -82,7 +82,7 @@ public interface ActionsMoveEvents extends ActionTrait {
         }
 
         // TODO: enum!
-        // Note: could use some const'mochadoom.s here.
+        // Note: could use some const's here.
         switch (line.special) {
             // TRIGGERS.
             // All from here to RETRIGGERS.

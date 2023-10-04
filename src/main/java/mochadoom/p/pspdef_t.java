@@ -25,7 +25,7 @@ public class pspdef_t implements IReadableDoomObject,IPackableDoomObject{
     
     @Override
     public void read(DataInputStream f) throws IOException {
-        //state=mochadoom.data.info.states[mochadoom.f.readLEInt()];
+        //state=data.info.states[f.readLEInt()];
         readstate=DoomIO.readLEInt(f);
         tics=DoomIO.readLEInt(f);
         sx=DoomIO.readLEInt(f);

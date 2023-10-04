@@ -58,7 +58,7 @@ import static mochadoom.utils.GenericCopy.malloc;
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. DESCRIPTION: Do all
  * the WAD I/O, get map description, set up initial state and misc. LUTs.
  * 
- * MAES 30/9/2011: This is a direct translation of prBoom+'mochadoom.s 2.5.0.8 p_setup.c
+ * MAES 30/9/2011: This is a direct translation of prBoom+'s 2.5.0.8 p_setup.c
  * and p_setup.h.
  * 
  * 
@@ -145,7 +145,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
     private boolean samelevel = false;
 
     /**
-     * e6y: Smart malloc Used by P_SetupLevel() for smart mochadoom.data loading. Do
+     * e6y: Smart malloc Used by P_SetupLevel() for smart data loading. Do
      * nothing if level is the same. Passing a null array forces allocation.
      * 
      * @param p
@@ -162,7 +162,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
     }
 
     // e6y: Smart calloc
-    // Used by P_SetupLevel() for smart mochadoom.data loading
+    // Used by P_SetupLevel() for smart data loading
     // Clear the memory without allocation if level is the same
     private <T extends Resettable> T[] calloc_IfSameLevel(T[] p, int numstuff, ArraySupplier<T> supplier, IntFunction<T[]> generator) {
         if (!samelevel) {
@@ -308,7 +308,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
         // Allocate zone memory for buffer.
         vertexes = calloc_IfSameLevel(vertexes, numvertexes, vertex_t::new, vertex_t[]::new);
 
-        // Load mochadoom.data into cache.
+        // Load data into cache.
         // cph 2006/07/29 - cast to mapvertex_t here, making the loop below much
         // neater
         data = DOOM.wadLoader.CacheLumpNumIntoArray(lump, numvertexes, mapvertex_t::new, mapvertex_t[]::new);
@@ -316,7 +316,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
         // Copy and convert vertex coordinates,
         // internal representation as fixed.
         for (int i = 0; i < numvertexes; i++) {
-            vertexes[i].x = data[i].x << fixed_t.FRACBITS;
+            vertexes[i].x = data[i].x << mochadoom.m.fixed_t.FRACBITS;
             vertexes[i].y = data[i].y << FRACBITS;
         }
 
@@ -473,7 +473,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
 
             // e6y
             // moved down for additional checks to avoid overflow
-            // if wrong vertexe'mochadoom.s indexes are in SEGS lump
+            // if wrong vertexe's indexes are in SEGS lump
             // see below for more detailed information
             // li.v1 = &vertexes[v1];
             // li.v2 = &vertexes[v2];
@@ -575,7 +575,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
             li.offset = GetOffset(li.v1, (ml.side != 0 ? ldef.v2 : ldef.v1));
         }
 
-        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the mochadoom.data
+        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the data
     }
 
     private void P_LoadSegs_V4(int lump) {
@@ -697,7 +697,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
             li.offset = GetOffset(li.v1, (ml.side != 0 ? ldef.v2 : ldef.v1));
         }
 
-        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the mochadoom.data
+        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the data
     }
 
     /*******************************************
@@ -705,28 +705,28 @@ public class BoomLevelLoader extends AbstractLevelLoader {
      * for PrBoom * author : figgi * what : support for gl nodes *
      *******************************************/
     /*
-     * private void P_LoadGLSegs(int lump) { int mochadoom.i; final glseg_t ml; line_t
+     * private void P_LoadGLSegs(int lump) { int i; final glseg_t ml; line_t
      * ldef; numsegs = W.LumpLength(lump) / sizeof(glseg_t); segs =
      * malloc_IfSameLevel(segs, numsegs * sizeof(seg_t)); memset(segs, 0,
      * numsegs * sizeof(seg_t)); ml = (final glseg_t*)W.CacheLumpNum(lump); if
-     * ((!ml) || (!numsegs)) I_Error("P_LoadGLSegs: no glsegs in level"); for(mochadoom.i
-     * = 0; mochadoom.i < numsegs; mochadoom.i++) { // check for gl-vertices segs[mochadoom.i].v1 =
-     * &vertexes[checkGLVertex(LittleShort(ml.v1))]; segs[mochadoom.i].v2 =
-     * &vertexes[checkGLVertex(LittleShort(ml.v2))]; segs[mochadoom.i].iSegID = mochadoom.i;
+     * ((!ml) || (!numsegs)) I_Error("P_LoadGLSegs: no glsegs in level"); for(i
+     * = 0; i < numsegs; i++) { // check for gl-vertices segs[i].v1 =
+     * &vertexes[checkGLVertex(LittleShort(ml.v1))]; segs[i].v2 =
+     * &vertexes[checkGLVertex(LittleShort(ml.v2))]; segs[i].iSegID = i;
      * if(ml.linedef != (unsigned short)-1) // skip minisegs { ldef =
-     * &lines[ml.linedef]; segs[mochadoom.i].linedef = ldef; segs[mochadoom.i].miniseg = false;
-     * segs[mochadoom.i].angle =
-     * R_PointToAngle2(segs[mochadoom.i].v1.x,segs[mochadoom.i].v1.y,segs[mochadoom.i].v2.x,segs[mochadoom.i].v2.y);
-     * segs[mochadoom.i].sidedef = &sides[ldef.sidenum[ml.side]]; segs[mochadoom.i].length =
-     * GetDistance(segs[mochadoom.i].v2.x - segs[mochadoom.i].v1.x, segs[mochadoom.i].v2.y - segs[mochadoom.i].v1.y);
-     * segs[mochadoom.i].frontsector = sides[ldef.sidenum[ml.side]].sector; if (ldef.flags
-     * & ML_TWOSIDED) segs[mochadoom.i].backsector =
-     * sides[ldef.sidenum[ml.side^1]].sector; else segs[mochadoom.i].backsector = 0; if
-     * (ml.side) segs[mochadoom.i].offset = GetOffset(segs[mochadoom.i].v1, ldef.v2); else
-     * segs[mochadoom.i].offset = GetOffset(segs[mochadoom.i].v1, ldef.v1); } else { segs[mochadoom.i].miniseg
-     * = true; segs[mochadoom.i].angle = 0; segs[mochadoom.i].offset = 0; segs[mochadoom.i].length = 0;
-     * segs[mochadoom.i].linedef = NULL; segs[mochadoom.i].sidedef = NULL; segs[mochadoom.i].frontsector =
-     * NULL; segs[mochadoom.i].backsector = NULL; } ml++; } W.UnlockLumpNum(lump); }
+     * &lines[ml.linedef]; segs[i].linedef = ldef; segs[i].miniseg = false;
+     * segs[i].angle =
+     * R_PointToAngle2(segs[i].v1.x,segs[i].v1.y,segs[i].v2.x,segs[i].v2.y);
+     * segs[i].sidedef = &sides[ldef.sidenum[ml.side]]; segs[i].length =
+     * GetDistance(segs[i].v2.x - segs[i].v1.x, segs[i].v2.y - segs[i].v1.y);
+     * segs[i].frontsector = sides[ldef.sidenum[ml.side]].sector; if (ldef.flags
+     * & ML_TWOSIDED) segs[i].backsector =
+     * sides[ldef.sidenum[ml.side^1]].sector; else segs[i].backsector = 0; if
+     * (ml.side) segs[i].offset = GetOffset(segs[i].v1, ldef.v2); else
+     * segs[i].offset = GetOffset(segs[i].v1, ldef.v1); } else { segs[i].miniseg
+     * = true; segs[i].angle = 0; segs[i].offset = 0; segs[i].length = 0;
+     * segs[i].linedef = NULL; segs[i].sidedef = NULL; segs[i].frontsector =
+     * NULL; segs[i].backsector = NULL; } ml++; } W.UnlockLumpNum(lump); }
      */
 
     //
@@ -736,7 +736,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
 
     private void P_LoadSubsectors(int lump) {
         /*
-         * cph 2006/07/29 - make mochadoom.data a final mapsubsector_t *, so the loop
+         * cph 2006/07/29 - make data a final mapsubsector_t *, so the loop
          * below is simpler & gives no finalness warnings
          */
         final mapsubsector_t[] data;
@@ -755,12 +755,12 @@ public class BoomLevelLoader extends AbstractLevelLoader {
             subsectors[i].firstline = data[i].firstseg;
         }
 
-        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the mochadoom.data
+        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the data
     }
 
     private void P_LoadSubsectors_V4(int lump) {
         /*
-         * cph 2006/07/29 - make mochadoom.data a final mapsubsector_t *, so the loop
+         * cph 2006/07/29 - make data a final mapsubsector_t *, so the loop
          * below is simpler & gives no finalness warnings
          */
         final mapsubsector_v4_t[] data;
@@ -777,7 +777,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
             subsectors[i].firstline = data[i].firstseg;
         }
 
-        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the mochadoom.data
+        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the data
     }
 
     //
@@ -839,7 +839,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
             // ss.sky = 0;
         }
 
-        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the mochadoom.data
+        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the data
     }
 
     //
@@ -903,7 +903,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
             }
         }
 
-        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the mochadoom.data
+        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the data
     }
 
     private void P_LoadNodes_V4(int lump) {
@@ -945,7 +945,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
             }
         }
 
-        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the mochadoom.data
+        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the data
     }
 
      private void P_LoadZSegs(ByteBuffer data) throws IOException {
@@ -1084,8 +1084,8 @@ public class BoomLevelLoader extends AbstractLevelLoader {
             // Extra vertexes read in
             if (vertexes != newvertarray) {
                 for (int i = 0; i < numlines; i++) {
-                    //lines[mochadoom.i].v1 = lines[mochadoom.i].v1 - vertexes + newvertarray;
-                    //lines[mochadoom.i].v2 = lines[mochadoom.i].v2 - vertexes + newvertarray;
+                    //lines[i].v1 = lines[i].v1 - vertexes + newvertarray;
+                    //lines[i].v2 = lines[i].v2 - vertexes + newvertarray;
                     // Find indexes of v1 & v2 inside old vertexes array
                     // (.v1-vertexes) and use that index to re-point inside newvertarray              
                     lines[i].v1 = newvertarray[C2JUtils.indexOf(vertexes, lines[i].v1)];
@@ -1139,7 +1139,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
             len = CheckZNodesOverflow(len, numsegs * mapseg_znod_t.sizeOf());
             P_LoadZSegs(data);
         } else {
-            //P_LoadGLZSegs (mochadoom.data, glnodes);
+            //P_LoadGLZSegs (data, glnodes);
             DOOM.doomSystem.Error("P_LoadZNodes: GL segs are not supported.");
         }
 
@@ -1174,7 +1174,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
             }
         }
 
-        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the mochadoom.data
+        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the data
     }
     
     private boolean no_overlapped_sprites;
@@ -1228,22 +1228,22 @@ public class BoomLevelLoader extends AbstractLevelLoader {
             }
 
             // Do spawn all other stuff.
-            mobj = DOOM.actions.SpawnMapThing(mt/* , mochadoom.i */);
+            mobj = DOOM.actions.SpawnMapThing(mt/* , i */);
             if (mobj != null && mobj.info.speed == 0) {
                 mobjlist[mobjcount++] = mobj;
             }
         }
 
-        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the mochadoom.data
+        DOOM.wadLoader.UnlockLumpNum(lump); // cph - release the data
         /*
          * #ifdef GL_DOOM if (V_GetMode() == VID_MODEGL) { no_overlapped_sprites
          * = true; qsort(mobjlist, mobjcount, sizeof(mobjlist[0]),
-         * dicmp_sprite_by_pos); if (!no_overlapped_sprites) { mochadoom.i = 1; while (mochadoom.i <
-         * mobjcount) { mobj_t *m1 = mobjlist[mochadoom.i - 1]; mobj_t *m2 = mobjlist[mochadoom.i -
+         * dicmp_sprite_by_pos); if (!no_overlapped_sprites) { i = 1; while (i <
+         * mobjcount) { mobj_t *m1 = mobjlist[i - 1]; mobj_t *m2 = mobjlist[i -
          * 0]; if (GETXY(m1) == GETXY(m2)) { mobj_t *mo = (m1.index < m2.index ?
-         * m1 : m2); mochadoom.i++; while (mochadoom.i < mobjcount && GETXY(mobjlist[mochadoom.i]) ==
-         * GETXY(m1)) { if (mobjlist[mochadoom.i].index < mo.index) { mo = mobjlist[mochadoom.i]; }
-         * mochadoom.i++; } // 'nearest' mo.flags |= MF_FOREGROUND; } mochadoom.i++; } } } #endif
+         * m1 : m2); i++; while (i < mobjcount && GETXY(mobjlist[i]) ==
+         * GETXY(m1)) { if (mobjlist[i].index < mo.index) { mo = mobjlist[i]; }
+         * i++; } // 'nearest' mo.flags |= MF_FOREGROUND; } i++; } } } #endif
          */
 
     }
@@ -1357,7 +1357,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
             );
 
             // TODO
-            // ld.iLineID=mochadoom.i; // proff 04/05/2000: needed for OpenGL
+            // ld.iLineID=i; // proff 04/05/2000: needed for OpenGL
             ld.sidenum[0] = mld.sidenum[0];
             ld.sidenum[1] = mld.sidenum[1];
 
@@ -1399,7 +1399,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
                     // }
                     // Mark such lines and do not draw them only in
                     // demo_compatibility,
-                    // because Boom'mochadoom.s behaviour is different
+                    // because Boom's behaviour is different
                     // See OTTAWAU.WAD E1M1, sectors 226 and 300
                     // http://www.doomworld.com/idgames/index.php?id=1651
                     // TODO ehhh?
@@ -1632,7 +1632,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
         // IMPORTANT MODIFICATION: no need to have both blockmaplump AND
         // blockmap.
         // If the offsets in the lump are OK, then we can modify them (remove 4)
-        // and copy the rest of the mochadoom.data in one single mochadoom.data array. This avoids
+        // and copy the rest of the data in one single data array. This avoids
         // reserving memory for two arrays (we can't simply alias one in Java)
 
         blockmap = new int[blockmaplump.length - 4];
@@ -1652,7 +1652,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
 
         
         // MAES: set blockmapxneg and blockmapyneg
-        // E.mochadoom.g. for a full 512x512 map, they should be both
+        // E.g. for a full 512x512 map, they should be both
         // -1. For a 257*257, they should be both -255 etc.
         if (bmapwidth > 255) {
             blockmapxneg = bmapwidth - 512;
@@ -1678,7 +1678,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
         rejectmatrix = DOOM.wadLoader.CacheLumpNumAsRawBytes(rejectlump, 0);
 
         // e6y: check for overflow
-        // TODO: mochadoom.g.Overflow.RejectOverrun(rejectlump, rejectmatrix,
+        // TODO: g.Overflow.RejectOverrun(rejectlump, rejectmatrix,
         // totallines,numsectors);
     }
 
@@ -1787,10 +1787,10 @@ public class BoomLevelLoader extends AbstractLevelLoader {
     //
     // Remove slime trails.
     //
-    // Slime trails are inherent to Doom'mochadoom.s coordinate system -- mochadoom.i.e. there is
+    // Slime trails are inherent to Doom's coordinate system -- i.e. there is
     // nothing that a node builder can do to prevent slime trails ALL of the
     // time,
-    // because it'mochadoom.s a product of the integer coodinate system, and just because
+    // because it's a product of the integer coodinate system, and just because
     // two lines pass through exact integer coordinates, doesn't necessarily
     // mean
     // that they will intersect at integer coordinates. Thus we must allow for
@@ -1806,12 +1806,12 @@ public class BoomLevelLoader extends AbstractLevelLoader {
     // splits
     // with a high degree of roundoff error). But we can use fractional
     // coordinates
-    // here, inside the engine. It'mochadoom.s like the difference between square inches
+    // here, inside the engine. It's like the difference between square inches
     // and
     // square miles, in terms of granularity.
     //
-    // For each vertex of every seg, check to see whether it'mochadoom.s also a vertex of
-    // the linedef associated with the seg (mochadoom.i.e, it'mochadoom.s an endpoint). If it'mochadoom.s not
+    // For each vertex of every seg, check to see whether it's also a vertex of
+    // the linedef associated with the seg (i.e, it's an endpoint). If it's not
     // an endpoint, and it wasn't already moved, move the vertex towards the
     // linedef by projecting it using the law of cosines. Formula:
     //
@@ -1834,7 +1834,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
     // cause slime). Skipping simple orthogonal lines lets the code finish
     // quicker.
     //
-    // Please note: This section of code is not interchangable with TeamTNT'mochadoom.s
+    // Please note: This section of code is not interchangable with TeamTNT's
     // code which attempts to fix the same problem.
     //
     // Firelines (TM) is a Rezistered Trademark of MBF Productions
@@ -1993,7 +1993,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
 
         for (int i = 0; i < Limits.MAXPLAYERS; i++) {
             DOOM.players[i].killcount = DOOM.players[i].secretcount = DOOM.players[i].itemcount = 0;
-            // TODO DM.players[mochadoom.i].resurectedkillcount = 0;//e6y
+            // TODO DM.players[i].resurectedkillcount = 0;//e6y
         }
 
         // Initial height of PointOfView
@@ -2054,9 +2054,9 @@ public class BoomLevelLoader extends AbstractLevelLoader {
         P_GetNodesVersion(lumpnum, gl_lumpnum);
 
         // e6y: speedup of level reloading
-        // Most of level'mochadoom.s structures now are allocated with PU_STATIC instead
+        // Most of level's structures now are allocated with PU_STATIC instead
         // of PU_LEVEL
-        // It is important for OpenGL, because in case of the same mochadoom.data in
+        // It is important for OpenGL, because in case of the same data in
         // memory
         // we can skip recalculation of much stuff
 
@@ -2233,7 +2233,7 @@ public class BoomLevelLoader extends AbstractLevelLoader {
 
         /*
          * if (GL_DOOM){ if (V_GetMode() == VID_MODEGL) { // e6y // Do not
-         * preprocess GL mochadoom.data during skipping, // because it potentially will
+         * preprocess GL data during skipping, // because it potentially will
          * not be used. // But preprocessing must be called immediately after
          * stop of skipping. if (!doSkip) { // proff 11/99: calculate all OpenGL
          * specific tables etc. gld_PreprocessLevel(); } } }

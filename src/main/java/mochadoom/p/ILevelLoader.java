@@ -66,7 +66,7 @@ public interface ILevelLoader {
 
 	/**
 	 * P_SetThingPosition Links a thing into both a block and a subsector based
-	 * on it'mochadoom.s x y. Sets thing.subsector properly
+	 * on it's x y. Sets thing.subsector properly
 	 *
 	 * 
 	 * @param thing

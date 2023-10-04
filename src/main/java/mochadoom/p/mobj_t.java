@@ -102,7 +102,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
 		this.spawnpoint = new mapthing_t();
 		this.A = A;
 		// A mobj_t is ALSO a thinker, as it always contains the struct.
-		// Don't fall for C'mochadoom.s trickery ;-)
+		// Don't fall for C's trickery ;-)
 		// this.thinker=new thinker_t();
 	}
 
@@ -231,7 +231,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
 	// Player: keep info about sliding along walls.
 	public static final int MF_SLIDE = 0x2000;
 	// Allow moves to any height, no gravity.
-	// For active floaters, e.mochadoom.g. cacodemons, pain elementals.
+	// For active floaters, e.g. cacodemons, pain elementals.
 	public static final int MF_FLOAT = 0x4000;
 	// Don't cross lines
 	// ??? or look at heights on teleport.
@@ -240,7 +240,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
 	// Player missiles as well as fireballs of various kinds.
 	public static final int MF_MISSILE = 0x10000;
 	// Dropped by a demon, not level spawned.
-	// E.mochadoom.g. ammo clips dropped by dying former humans.
+	// E.g. ammo clips dropped by dying former humans.
 	public static final int MF_DROPPED = 0x20000;
 	// Use fuzzy draw (shadow demons or spectres),
 	// temporary player invisibility powerup.
@@ -252,7 +252,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
 	// that is, have dead bodies slide down all the way.
 	public static final int MF_CORPSE = 0x100000;
 	// Floating to a height for a move, ???
-	// don't auto float to target'mochadoom.s height.
+	// don't auto float to target's height.
 	public static final int MF_INFLOAT = 0x200000;
 
 	// On kill, count this enemy object
@@ -269,7 +269,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
 	public static final int MF_SKULLFLY = 0x1000000;
 
 	// Don't spawn this object
-	// in death match mode (e.mochadoom.g. key cards).
+	// in death match mode (e.g. key cards).
 	public static final int MF_NOTDMATCH = 0x2000000;
 
 	// Player sprites in multiplayer modes are modified
@@ -521,7 +521,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
 		this.type = mobjtype_t.values()[b.getInt()]; // 92
 		b.getInt(); // TODO: mobjinfo (deduced from type) //96
 		this.mobj_tics = Tables.BITS32 & b.getInt(); // 100
-		// System.out.println("State"+mochadoom.f.readLEInt());
+		// System.out.println("State"+f.readLEInt());
 		this.stateid = b.getInt(); // TODO: state OK?
 		this.flags = b.getInt()&Tables.BITS32; // Only 32-bit flags can be restored
 		this.health = b.getInt();
@@ -543,7 +543,7 @@ public class mobj_t extends thinker_t implements ISoundOrigin, Interceptable,
 	/*
 	 * @Override protected void finalize(){ count++; if (count%100==0)
 	 * System.err
-	 * .printf("Total %d Mobj %s@%d finalized free memory: %d\mochadoom.n",count,
+	 * .printf("Total %d Mobj %s@%d finalized free memory: %d\n",count,
 	 * this.type.name(),this.hashCode(),Runtime.getRuntime().freeMemory()); }
 	 */
 	protected static int count = 0;

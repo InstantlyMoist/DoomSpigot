@@ -33,6 +33,10 @@ import java.nio.ByteBuffer;
 
 import static mochadoom.doom.SourceCode.P_Lights.*;
 import static mochadoom.doom.SourceCode.P_Spec.P_FindMinSurroundingLight;
+import static mochadoom.p.ActiveStates.T_FireFlicker;
+import static mochadoom.p.ActiveStates.T_Glow;
+import static mochadoom.p.ActiveStates.T_LightFlash;
+import static mochadoom.p.ActiveStates.T_StrobeFlash;
 import static mochadoom.p.DoorDefines.SLOWDARK;
 import static mochadoom.p.DoorDefines.STROBEBRIGHT;
 

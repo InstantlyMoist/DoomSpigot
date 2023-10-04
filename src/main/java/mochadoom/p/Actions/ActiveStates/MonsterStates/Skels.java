@@ -101,7 +101,7 @@ public interface Skels extends ActionTrait {
         // change angle
         exact = sceneRenderer().PointToAngle2(actor.x, actor.y, dest.x, dest.y) & BITS32;
         
-        // MAES: let'mochadoom.s analyze the logic here...
+        // MAES: let's analyze the logic here...
         // So exact is the angle between the missile and its target.
         if (exact != actor.angle) { // missile is already headed there dead-on.
             if (exact - actor.angle > ANG180) {

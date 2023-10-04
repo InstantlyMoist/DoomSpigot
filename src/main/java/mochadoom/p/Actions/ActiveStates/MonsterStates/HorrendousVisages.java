@@ -195,7 +195,7 @@ public interface HorrendousVisages extends Sounds {
         // telefrag anything in this spot
         getAttacks().TeleportMove(newmobj, newmobj.x, newmobj.y);
 
-        // remove self (mochadoom.i.e., cube).
+        // remove self (i.e., cube).
         getEnemies().RemoveMobj(mo);
     }
 }

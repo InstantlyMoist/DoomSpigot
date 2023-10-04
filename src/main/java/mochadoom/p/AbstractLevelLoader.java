@@ -26,7 +26,7 @@ import static mochadoom.utils.C2JUtils.flags;
  * ACCESS (aka not behindsetters/getters) here, as well as some common shared
  * internal structures/status objects. If you need access to stuff like the
  * blockmap/reject table etc. then you should ask for this class. If you only
- * need access to some methods like e.mochadoom.g. SetupLevel, you can simply use the
+ * need access to some methods like e.g. SetupLevel, you can simply use the
  * ILevelLoader interface.
  * 
  * @author velktron
@@ -72,7 +72,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
 
     /**
      * killough 3/1/98: remove blockmap limit internally. Maes 29/9/2011: Header
-     * stripped during loading and pointers pre-modified, so there'mochadoom.s no double
+     * stripped during loading and pointers pre-modified, so there's no double
      * arraying.
      */
     public int[] blockmap; // was short -- killough
@@ -114,7 +114,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
 
     /**
      * P_SetThingPosition Links a thing into both a block and a subsector based
-     * on it'mochadoom.s x y. Sets thing.subsector properly
+     * on it's x y. Sets thing.subsector properly
      */
 
     @Override
@@ -268,10 +268,10 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
     long total=0;
     
     /**
-     * Actually construct the blockmap lump from the level mochadoom.data This finds the
+     * Actually construct the blockmap lump from the level data This finds the
      * intersection of each linedef with the column and row lines at the left
      * and bottom of each blockmap cell. It then adds the line to all block
-     * lists touching the intersection. MAES 30/9/2011: Converted to Java. It'mochadoom.s
+     * lists touching the intersection. MAES 30/9/2011: Converted to Java. It's
      * important that LINEDEFS and VERTEXES are already read-in and defined, so
      * it is necessary to change map lump ordering for this to work.
      */
@@ -325,7 +325,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
         // also create an array of linelist counts on NBlocks
         // finally make an array in which we can mark blocks done per line
 
-        // CPhipps - calloc'mochadoom.s
+        // CPhipps - calloc's
         blocklists = new linelist_t[NBlocks];
         blockcount = new int[NBlocks];
         blockdone = new boolean[NBlocks];
@@ -346,18 +346,18 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
         // and add the linedef number to the blocklists for those blocks
 
         for (int i = 0; i < numlines; i++) {
-            int x1 = lines[i].v1x >> FRACBITS; // lines[mochadoom.i] map coords
+            int x1 = lines[i].v1x >> FRACBITS; // lines[i] map coords
             int y1 = lines[i].v1y >> FRACBITS;
             int x2 = lines[i].v2x >> FRACBITS;
             int y2 = lines[i].v2y >> FRACBITS;
             int dx = x2 - x1;
             int dy = y2 - y1;
-            boolean vert = dx == 0; // lines[mochadoom.i] slopetype
+            boolean vert = dx == 0; // lines[i] slopetype
             boolean horiz = dy == 0;
             boolean spos = (dx ^ dy) > 0;
             boolean sneg = (dx ^ dy) < 0;
             int bx, by; // block cell coords
-            int minx = x1 > x2 ? x2 : x1; // extremal lines[mochadoom.i] coords
+            int minx = x1 > x2 ? x2 : x1; // extremal lines[i] coords
             int maxx = x1 > x2 ? x1 : x2;
             int miny = y1 > y2 ? y2 : y1;
             int maxy = y1 > y2 ? y1 : y2;
@@ -376,7 +376,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
             AddBlockLine(blocklists, blockcount, blockdone, by * ncols + bx, i);
 
             // For each column, see where the line along its left edge, which
-            // it contains, intersects the Linedef mochadoom.i. Add mochadoom.i to each
+            // it contains, intersects the Linedef i. Add i to each
             // corresponding
             // blocklist.
 
@@ -438,14 +438,14 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
             }
 
             // For each row, see where the line along its bottom edge, which
-            // it contains, intersects the Linedef mochadoom.i. Add mochadoom.i to all the
+            // it contains, intersects the Linedef i. Add i to all the
             // corresponding
             // blocklists.
 
             if (!horiz) {
                 for (int j = 0; j < nrows; j++) {
                     // intersection of Linedef with y=yorg+(j<<blkshift)
-                    // (x,y) on Linedef mochadoom.i satisfies: (y-y1)*dx = dy*(x-x1)
+                    // (x,y) on Linedef i satisfies: (y-y1)*dx = dy*(x-x1)
                     // x = dx*(y-y1)/dy+x1;
 
                     int y = yorg + (j << BLOCK_SHIFT); // (x,y) is intersection
@@ -500,7 +500,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
         }
 
         // Add initial 0 to all blocklists
-        // count the total number of lines (and 0'mochadoom.s and -1'mochadoom.s)
+        // count the total number of lines (and 0's and -1's)
 
         C2JUtils.memset(blockdone, false, NBlocks);
 
@@ -528,11 +528,11 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
         for (int i = 0; i < NBlocks; i++) {
             linelist_t bl = blocklists[i];
             int offs =
-                blockmaplump[4 + i] = // set offset to block'mochadoom.s list
+                blockmaplump[4 + i] = // set offset to block's list
                     (i != 0 ? blockmaplump[4 + i - 1] : 4 + NBlocks)
                             + (i != 0 ? blockcount[i - 1] : 0);
 
-            // add the lines in each block'mochadoom.s list to the blockmaplump
+            // add the lines in each block's list to the blockmaplump
             // delete each list node as we go
 
             while (bl != null) {
@@ -568,7 +568,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
                 int blockoffset;
 
                 offset = y * bmapwidth + x;
-                blockoffset = offset + 4; // That'mochadoom.s where the shit starts.
+                blockoffset = offset + 4; // That's where the shit starts.
 
                 // check that block offset is in bounds
                 if (blockoffset >= p_maxoffs) {
@@ -644,7 +644,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
                     // colcount++;
                 }
             }
-            // rowdensity[mochadoom.i]=((float)colcount/numsectors);
+            // rowdensity[i]=((float)colcount/numsectors);
         }
 
         tabledensity = (float) tcount / (numsectors * numsectors);
@@ -668,7 +668,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
      */
 
     protected void pokeIntoReject(int x, int y) {
-        // Locate bit pointer e.mochadoom.g. for a 4x4 table, x=2 and y=3 give
+        // Locate bit pointer e.g. for a 4x4 table, x=2 and y=3 give
         // 3*4+2=14
         final int pnum = y * numsectors + x;
 
@@ -682,7 +682,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
         final int bytenum = pnum >> 3;
 
         // OK, so how we pinpoint that one bit?
-        // 1110 & 0111 = 0110 = 6 so it'mochadoom.s the sixth bit
+        // 1110 & 0111 = 0110 = 6 so it's the sixth bit
         // of the second byte
         final int bitnum = pnum & 7;
 
@@ -695,7 +695,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
     }
 
     protected void retrieveFromReject(int x, int y, boolean value) {
-        // Locate bit pointer e.mochadoom.g. for a 4x4 table, x=2 and y=3 give
+        // Locate bit pointer e.g. for a 4x4 table, x=2 and y=3 give
         // 3*4+2=14
         final int pnum = y * numsectors + x;
 
@@ -709,7 +709,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
         final int bytenum = pnum >> 3;
 
         // OK, so how we pinpoint that one bit?
-        // 1110 & 0111 = 0110 = 6 so it'mochadoom.s the sixth bit
+        // 1110 & 0111 = 0110 = 6 so it's the sixth bit
         // of the second byte
         final int bitnum = pnum & 7;
 
@@ -721,7 +721,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
 
     }
 
-    // Keeps track of lines that belong to a sector, to exclude e.mochadoom.g.
+    // Keeps track of lines that belong to a sector, to exclude e.g.
     // orphaned ones from the blockmap.
     protected boolean[] used_lines;
 
@@ -733,7 +733,7 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
     // its actual value is to be interpreted as 0x01FF&x.
     // Full 512x512 blockmaps get this value set to -1.
     // A 511x511 blockmap would still have a valid negative number
-    // e.mochadoom.g. -1..510, so they would be set to -2
+    // e.g. -1..510, so they would be set to -2
     
     public static final boolean FIX_BLOCKMAP_512 = Engine.getConfig().equals(Settings.fix_blockmap, Boolean.TRUE);
     public int blockmapxneg = -257;
@@ -811,13 +811,13 @@ public abstract class AbstractLevelLoader implements ILevelLoader {
         } catch (Exception e) {
             // Any exception at this point means missing REJECT lump. Fuck that,
             // and move on.
-            // If everything goes OK, tmpreject will contain the REJECT lump'mochadoom.s
-            // mochadoom.data
+            // If everything goes OK, tmpreject will contain the REJECT lump's
+            // data
             // BUT, alas, we're not done yet.
         }
 
         // Sanity check on matrix.
-        // E.mochadoom.g. a 5-sector map will result in ceil(25/8)=4 bytes.
+        // E.g. a 5-sector map will result in ceil(25/8)=4 bytes.
         // If the reject table is broken/corrupt, too bad. It will all be
         // zeroes.
         // Much better than overflowing.

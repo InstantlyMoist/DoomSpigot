@@ -13,7 +13,7 @@ import static mochadoom.m.fixed_t.*;
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
-// $Id: Specials.java,mochadoom.v 1.7 2011/06/01 00:09:08 velktron Exp $
+// $Id: Specials.java,v 1.7 2011/06/01 00:09:08 velktron Exp $
 //
 // Copyright (C) 1993-1996 by id Software, Inc.
 //

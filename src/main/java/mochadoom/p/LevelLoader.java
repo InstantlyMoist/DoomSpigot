@@ -25,7 +25,7 @@ import static mochadoom.utils.GenericCopy.malloc;
 //Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
 //
-// $Id: LevelLoader.java,mochadoom.v 1.44 2012/09/24 17:16:23 velktron Exp $
+// $Id: LevelLoader.java,v 1.44 2012/09/24 17:16:23 velktron Exp $
 //
 // Copyright (C) 1993-1996 by id Software, Inc.
 //
@@ -46,7 +46,7 @@ import static mochadoom.utils.GenericCopy.malloc;
 //-----------------------------------------------------------------------------
 public class LevelLoader extends AbstractLevelLoader {
 
-    public static final String rcsid = "$Id: LevelLoader.java,mochadoom.v 1.44 2012/09/24 17:16:23 velktron Exp $";
+    public static final String rcsid = "$Id: LevelLoader.java,v 1.44 2012/09/24 17:16:23 velktron Exp $";
 
     public LevelLoader(DoomMain<?, ?> DM) {
         super(DM);
@@ -66,7 +66,7 @@ public class LevelLoader extends AbstractLevelLoader {
         //  total lump length / vertex record length.
         numvertexes = DOOM.wadLoader.LumpLength(lump) / mapvertex_t.sizeOf();
 
-        // Load mochadoom.data into cache.
+        // Load data into cache.
         // MAES: we now have a mismatch between memory/disk: in memory, we need an array.
         // On disk, we have a single lump/blob. Thus, we need to find a way to deserialize this...
         vertexes = DOOM.wadLoader.CacheLumpNumIntoArray(lump, numvertexes, vertex_t::new, vertex_t[]::new);
@@ -110,7 +110,7 @@ public class LevelLoader extends AbstractLevelLoader {
             li.sidedef = sides[ldef.sidenum[side]];
             li.frontsector = sides[ldef.sidenum[side]].sector;
             if (flags(ldef.flags, ML_TWOSIDED)) {
-                // MAES: Fix double sided without back side. E.mochadoom.g. Linedef 16103 in Europe.wad
+                // MAES: Fix double sided without back side. E.g. Linedef 16103 in Europe.wad
                 if (ldef.sidenum[side ^ 1] != line_t.NO_INDEX) {
                     li.backsector = sides[ldef.sidenum[side ^ 1]].sector;
                 }
@@ -293,11 +293,11 @@ public class LevelLoader extends AbstractLevelLoader {
       mt.angle = SHORT(mt.angle);
       mt.type = SHORT(mt.type);
       mt.options = SHORT(mt.options);*/
-            //System.out.printf("Spawning %d %s\mochadoom.n",mochadoom.i,mt.type);
+            //System.out.printf("Spawning %d %s\n",i,mt.type);
             DOOM.actions.SpawnMapThing(mt);
         }
 
-        // Status may have changed. It'mochadoom.s better to release the resources anyway
+        // Status may have changed. It's better to release the resources anyway
         //W.UnlockLumpNum(lump);
     }
 
@@ -397,7 +397,7 @@ public class LevelLoader extends AbstractLevelLoader {
                 ld.backsector = null;
             }
 
-            // If at least one valid sector is defined, then it'mochadoom.s not null.
+            // If at least one valid sector is defined, then it's not null.
             if (ld.frontsector != null || ld.backsector != null) {
                 this.used_lines[i] = true;
             }
@@ -468,13 +468,13 @@ public class LevelLoader extends AbstractLevelLoader {
             data.rewind();
             data.readCharArray(blockmaplump, count);
 
-            // Maes: first four shorts are header mochadoom.data.
+            // Maes: first four shorts are header data.
             bmaporgx = blockmaplump[0] << FRACBITS;
             bmaporgy = blockmaplump[1] << FRACBITS;
             bmapwidth = blockmaplump[2];
             bmapheight = blockmaplump[3];
 
-            // MAES: use killough'mochadoom.s code to convert terminators to -1 beforehand
+            // MAES: use killough's code to convert terminators to -1 beforehand
             for (int i = 4; i < count; i++) {
                 short t = (short) blockmaplump[i]; // killough 3/1/98
                 blockmaplump[i] = (int) (t == -1 ? -1l : t & 0xffff);
@@ -494,7 +494,7 @@ public class LevelLoader extends AbstractLevelLoader {
 
         // IMPORTANT MODIFICATION: no need to have both blockmaplump AND blockmap.
         // If the offsets in the lump are OK, then we can modify them (remove 4)
-        // and copy the rest of the mochadoom.data in one single mochadoom.data array. This avoids
+        // and copy the rest of the data in one single data array. This avoids
         // reserving memory for two arrays (we can't simply alias one in Java)
         blockmap = new int[blockmaplump.length - 4];
 
@@ -580,7 +580,7 @@ public class LevelLoader extends AbstractLevelLoader {
             int countlines = 0;
             // We scan through ALL lines....
 
-            // System.out.println(mochadoom.i+ ": looking for sector -> "+sector);
+            // System.out.println(i+ ": looking for sector -> "+sector);
             for (int j = 0; j < numlines; j++) {
                 li = lines[j];
 
@@ -761,9 +761,9 @@ public class LevelLoader extends AbstractLevelLoader {
 
 }
 
-//$Log: LevelLoader.java,mochadoom.v $
+//$Log: LevelLoader.java,v $
 //Revision 1.44  2012/09/24 17:16:23  velktron
-//Massive merge between HiColor and HEAD. There'mochadoom.s no difference from now on, and development continues on HEAD.
+//Massive merge between HiColor and HEAD. There's no difference from now on, and development continues on HEAD.
 //
 //Revision 1.43.2.2  2012/09/24 16:57:16  velktron
 //Addressed generics warnings.
@@ -857,13 +857,13 @@ public class LevelLoader extends AbstractLevelLoader {
 //Semi-playable Techdemo v1.3 milestone
 //
 //Revision 1.16  2011/05/05 17:24:22  velktron
-//Started merging more of _D_'mochadoom.s changes.
+//Started merging more of _D_'s changes.
 //
 //Revision 1.15  2010/12/20 17:15:08  velktron
 //Made the renderer more OO -> TextureManager and other changes as well.
 //
 //Revision 1.14  2010/11/22 21:41:22  velktron
-//Parallel rendering...sort of.It works, but either  the barriers are broken or it'mochadoom.s simply not worthwhile at this point :-/
+//Parallel rendering...sort of.It works, but either  the barriers are broken or it's simply not worthwhile at this point :-/
 //
 //Revision 1.13  2010/11/22 14:54:53  velktron
 //Greater objectification of sectors etc.
@@ -905,10 +905,10 @@ public class LevelLoader extends AbstractLevelLoader {
 //Revision 1.2  2010/09/02 15:56:54  velktron
 //Bulk of unified renderer copyediting done.
 //
-//Some changes like e.mochadoom.g. global separate limits class and instance methods for seg_t and node_t introduced.
+//Some changes like e.g. global separate limits class and instance methods for seg_t and node_t introduced.
 //
 //Revision 1.1  2010/09/01 15:53:42  velktron
-//Graphics mochadoom.data loader implemented....still need to figure out how column caching works, though.
+//Graphics data loader implemented....still need to figure out how column caching works, though.
 //
 //Revision 1.4  2010/08/19 23:14:49  velktron
 //Automap

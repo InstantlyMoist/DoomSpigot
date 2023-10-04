@@ -164,7 +164,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents {
         switch (line.special) {
             case 99: // Blue Lock
             case 133:
-                /*         if ( mochadoom.p==null )
+                /*         if ( p==null )
              return false; */
                 if (!p.cards[card_t.it_bluecard.ordinal()] && !p.cards[card_t.it_blueskull.ordinal()]) {
                     p.message = PD_BLUEO;
@@ -175,7 +175,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents {
 
             case 134: // Red Lock
             case 135:
-                /*        if ( mochadoom.p==null )
+                /*        if ( p==null )
              return false; */
                 if (!p.cards[card_t.it_redcard.ordinal()] && !p.cards[card_t.it_redskull.ordinal()]) {
                     p.message = PD_REDO;
@@ -186,7 +186,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents {
 
             case 136:    // Yellow Lock
             case 137:
-                /*        if ( mochadoom.p==null )
+                /*        if ( p==null )
              return false; */
                 if (!p.cards[card_t.it_yellowcard.ordinal()]
                     && !p.cards[card_t.it_yellowskull.ordinal()]) {
@@ -335,7 +335,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents {
         if (sec.specialdata != null) {
             if (sec.specialdata instanceof plat_t) {
                 /**
-                 * [MAES]: mochadoom.demo sync for e1nm0646: emulates active plat_t interpreted
+                 * [MAES]: demo sync for e1nm0646: emulates active plat_t interpreted
                  * as door. TODO: add our own overflow handling class.
                  */
                 door = ((plat_t) sec.specialdata).asVlDoor(levelLoader().sectors);
@@ -343,7 +343,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents {
                 door = (vldoor_t) sec.specialdata;
             }
             switch (line.special) {
-                case 1: // ONLY FOR "RAISE" DOORS, NOT "OPEN"mochadoom.s
+                case 1: // ONLY FOR "RAISE" DOORS, NOT "OPEN"s
                 case 26:
                 case 27:
                 case 28:

@@ -8,7 +8,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 /**
- * Source animation definition. Made readable for compatibility with Boom'mochadoom.s
+ * Source animation definition. Made readable for compatibility with Boom's
  * SWANTBLS system. 
  * 
  * @author velktron
@@ -36,7 +36,7 @@ public class animdef_t
 
     /** The END name and START name of a texture, given in this order when reading a lump 
      *  The animation system is agnostic to the actual names of of the "in-between" 
-     *  frames, it'mochadoom.s purely pointer based, and only the start/end are constant. It only
+     *  frames, it's purely pointer based, and only the start/end are constant. It only
      *  counts the actual number of existing textures during initialization time.
      * 
      */

@@ -94,7 +94,7 @@ public class MapUtils {
   }
   
 
-  /* cph - this is killough'mochadoom.s 4/19/98 version of P_InterceptVector and
+  /* cph - this is killough's 4/19/98 version of P_InterceptVector and
    *  P_InterceptVector2 (which were interchangeable). We still use this
    *  in compatibility mode. */
   private static final int P_InterceptVector2(final divline_t v2, final divline_t v1)

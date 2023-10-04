@@ -29,7 +29,7 @@ public class divline_t {
      {
     	 
     	 
-    	 // Using Killough'mochadoom.s version.
+    	 // Using Killough's version.
     	  return
     	    (dx==0) ? x <= this.x ? dy > 0 : dy < 0 :
     	    (dy==0) ? y <= this.y ? dx < 0 : dx > 0 :

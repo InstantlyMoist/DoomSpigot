@@ -229,7 +229,7 @@ public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents {
     }
 
     //
-    // Remove a ceiling'mochadoom.s thinker
+    // Remove a ceiling's thinker
     //
     default void RemoveActiveCeiling(ceiling_t c) {
         final ceiling_t[] activeCeilings = getActiveCeilings();
@@ -244,7 +244,7 @@ public interface ActionsCeilings extends ActionsMoveEvents, ActionsUseEvents {
     }
 
     //
-    // Restart a ceiling that'mochadoom.s in-stasis
+    // Restart a ceiling that's in-stasis
     //
     default void ActivateInStasisCeiling(line_t line) {
         final ceiling_t[] activeCeilings = getActiveCeilings();

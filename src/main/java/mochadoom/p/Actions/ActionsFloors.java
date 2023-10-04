@@ -66,7 +66,7 @@ public interface ActionsFloors extends ActionsPlats {
                 switch (floor.type) //TODO: check if a null floor.type is valid or a bug 
                 // MAES: actually, type should always be set to something.
                 // In C, this means "zero" or "null". In Java, we must make sure
-                // it'mochadoom.s actually set to something all the time.
+                // it's actually set to something all the time.
                 {
                     case lowerAndChange:
                         floor.sector.special = (short) floor.newspecial;

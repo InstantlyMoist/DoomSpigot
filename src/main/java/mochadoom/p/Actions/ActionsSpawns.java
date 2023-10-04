@@ -59,7 +59,7 @@ public interface ActionsSpawns extends ActionsSectors {
         x = mobj.spawnpoint.x << FRACBITS;
         y = mobj.spawnpoint.y << FRACBITS;
 
-        // somthing is occupying it'mochadoom.s position?
+        // somthing is occupying it's position?
         if (!CheckPosition(mobj, x, y)) {
             return; // no respwan
         }
@@ -278,7 +278,7 @@ public interface ActionsSpawns extends ActionsSectors {
         }
 
         if (mthing.type <= 0) {
-            // Ripped from Chocolate Doom :-mochadoom.p
+            // Ripped from Chocolate Doom :-p
             // Thing type 0 is actually "player -1 start".  
             // For some reason, Vanilla Doom accepts/ignores this.
             // MAES: no kidding.

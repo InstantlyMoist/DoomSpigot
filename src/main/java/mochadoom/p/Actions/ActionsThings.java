@@ -138,7 +138,7 @@ public interface ActionsThings extends ActionTrait {
     ;
 
     /**
-     * P_TouchSpecialThing LIKE ROMERO'mochadoom.s ASS!!!
+     * P_TouchSpecialThing LIKE ROMERO's ASS!!!
      */
     default void TouchSpecialThing(mobj_t special, mobj_t toucher) {
         final DoomMain<?, ?> DOOM = DOOM();

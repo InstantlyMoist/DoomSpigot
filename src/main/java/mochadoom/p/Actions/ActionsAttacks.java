@@ -225,7 +225,7 @@ public interface ActionsAttacks extends ActionsAim, ActionsMobj, ActionsSight, A
     /**
      * PTR_ShootTraverse
      *
-     * 9/5/2011: Accepted _D_'mochadoom.s fix
+     * 9/5/2011: Accepted _D_'s fix
      */
     @P_Map.C(PTR_ShootTraverse)
     default boolean ShootTraverse(intercept_t in) {

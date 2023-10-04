@@ -84,7 +84,7 @@ public interface ActionsShootEvents extends ActionsSpawns {
                 return false;
             }
 
-            // it'mochadoom.s a sky hack wall
+            // it's a sky hack wall
             if (li.backsector != null && li.backsector.ceilingpic == DOOM().textureManager.getSkyFlatNum()) {
                 return false;
             }

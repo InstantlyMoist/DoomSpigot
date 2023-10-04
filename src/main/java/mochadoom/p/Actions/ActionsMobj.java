@@ -27,27 +27,28 @@ import mochadoom.doom.weapontype_t;
 import mochadoom.p.AbstractLevelLoader;
 import mochadoom.p.mobj_t;
 
-import static mochadoom.p.mobj_t.MF_CORPSE;
-import static mochadoom.p.mobj_t.MF_COUNTKILL;
-import static mochadoom.p.mobj_t.MF_DROPOFF;
-import static mochadoom.p.mobj_t.MF_FLOAT;
-import static mochadoom.p.mobj_t.MF_JUSTHIT;
-import static mochadoom.p.mobj_t.MF_NOCLIP;
-import static mochadoom.p.mobj_t.MF_NOGRAVITY;
-import static mochadoom.p.mobj_t.MF_SHOOTABLE;
-import static mochadoom.p.mobj_t.MF_SKULLFLY;
-import static mochadoom.p.mobj_t.MF_SOLID;
-import static mochadoom.p.MobjFlags.MF_DROPPED;
-import static mochadoom.p.MobjFlags.MF_NOBLOCKMAP;
-import static mochadoom.p.MobjFlags.MF_NOSECTOR;
-import static mochadoom.p.MobjFlags.MF_SPECIAL;
-
 import static mochadoom.data.Defines.*;
 import static mochadoom.data.Tables.*;
 import static mochadoom.data.info.states;
 import static mochadoom.doom.SourceCode.P_MapUtl.P_UnsetThingPosition;
 import static mochadoom.doom.SourceCode.P_Mobj.P_RemoveMobj;
 import static mochadoom.m.fixed_t.*;
+import static mochadoom.p.MobjFlags.*;
+import static mochadoom.p.mobj_t.*;
+import static mochadoom.p.mobj_t.MF_CORPSE;
+import static mochadoom.p.mobj_t.MF_COUNTKILL;
+import static mochadoom.p.mobj_t.MF_DROPOFF;
+import static mochadoom.p.mobj_t.MF_DROPPED;
+import static mochadoom.p.mobj_t.MF_FLOAT;
+import static mochadoom.p.mobj_t.MF_JUSTHIT;
+import static mochadoom.p.mobj_t.MF_NOBLOCKMAP;
+import static mochadoom.p.mobj_t.MF_NOCLIP;
+import static mochadoom.p.mobj_t.MF_NOGRAVITY;
+import static mochadoom.p.mobj_t.MF_NOSECTOR;
+import static mochadoom.p.mobj_t.MF_SHOOTABLE;
+import static mochadoom.p.mobj_t.MF_SKULLFLY;
+import static mochadoom.p.mobj_t.MF_SOLID;
+import static mochadoom.p.mobj_t.MF_SPECIAL;
 import static mochadoom.utils.C2JUtils.eval;
 
 public interface ActionsMobj extends ActionsThings, ActionsMovement, ActionsTeleportation {
@@ -227,7 +228,7 @@ public interface ActionsMobj extends ActionsThings, ActionsMovement, ActionsTele
             {
                 source.player.frags[target.player.identify()]++;
             }
-            // It'mochadoom.s probably intended to increment the frags of source player vs target player. Lookup?
+            // It's probably intended to increment the frags of source player vs target player. Lookup? 
         } else if (!IsNetGame() && ((target.flags & MF_COUNTKILL) != 0)) {
             // count all monster deaths,
             // even those caused by other monsters

@@ -30,7 +30,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
     private static final Logger LOGGER = Loggers.getLogger(UnifiedGameMap.class.getName());
     
     /**
-     * killough'mochadoom.s code for thinkers seems to be totally broken in M.D,
+     * killough's code for thinkers seems to be totally broken in M.D,
      * so commented it out and will not probably restore, but may invent
      * something new in future
      * - Good Sign 2017/05/1
@@ -39,12 +39,12 @@ public abstract class UnifiedGameMap implements ThinkerList {
         this.SW = new Switches();
         this.SPECS = new Specials();
         this.thinkercap = new thinker_t();
-        /*for (int mochadoom.i=0; mochadoom.i<th_class.NUMTHCLASS; mochadoom.i++) { // killough 8/29/98: initialize threaded lists
-            thinkerclasscap[mochadoom.i]=new thinker_t();
+        /*for (int i=0; i<th_class.NUMTHCLASS; i++) { // killough 8/29/98: initialize threaded lists
+            thinkerclasscap[i]=new thinker_t();
         }*/
 
         // Normally unused. It clashes with line attribute 124, and looks like ass
-        // anyway. However it'mochadoom.s fully implemented.
+        // anyway. However it's fully implemented.
         //this.SL=new SlideDoor(DS);
         //DS.SL=SL;
         this.DOOM = DOOM;
@@ -84,7 +84,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
     int ptflags;
     
     /**
-     * killough'mochadoom.s code for thinkers seems to be totally broken in M.D,
+     * killough's code for thinkers seems to be totally broken in M.D,
      * this method is unused
      */
     /*protected void UpdateThinker(thinker_t thinker) {
@@ -130,7 +130,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
     //
 
     /**
-     * Floor/ceiling animation sequences, defined by first and last frame, mochadoom.i.e.
+     * Floor/ceiling animation sequences, defined by first and last frame, i.e.
      * the flat (64x64 tile) name to be used. The full animation sequence is
      * given using all the flats between the start and end entry, in the order
      * found in the WAD file.
@@ -180,7 +180,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
         public short numlinespecials;
         
         /**
-         * These are NOT the same anims found in mochadoom.defines. Dunno why they fucked up
+         * These are NOT the same anims found in defines. Dunno why they fucked up
          * this one so badly. Even the type has the same name, but is entirely
          * different. No way they could be overlapped/unionized either. So WTF.
          * Really. WTF.
@@ -250,7 +250,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
             anim_t lstanim; 
             // Init animation. MAES: sneaky base pointer conversion ;-)
             this.lastanim = 0;
-            // MAES: for (mochadoom.i=0 ; animdefs[mochadoom.i].istexture != -1 ; mochadoom.i++)
+            // MAES: for (i=0 ; animdefs[i].istexture != -1 ; i++)
             for (int i = 0; i < animdefs.length - 1; i++) {
                 lstanim = anims[this.lastanim];
                 if (animdefs[i].istexture) {
@@ -261,7 +261,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
                     // So, if it IS a valid texture, it goes straight into anims.
                     lstanim.picnum = DOOM.textureManager.TextureNumForName(animdefs[i].endname);
                     lstanim.basepic = DOOM.textureManager.TextureNumForName(animdefs[i].startname);
-                } else { // If not a texture, it'mochadoom.s a flat.
+                } else { // If not a texture, it's a flat.
                     if (DOOM.wadLoader.CheckNumForName(animdefs[i].startname) == -1) {
                         continue;
                     }
@@ -389,7 +389,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
 
             episode = 1;
 
-            // MAES: if this isn't changed Ultimate Doom'mochadoom.s switches
+            // MAES: if this isn't changed Ultimate Doom's switches
             // won't work visually.
             if (DOOM.isRegistered()) {
                 episode = 2;
@@ -415,10 +415,10 @@ public abstract class UnifiedGameMap implements ThinkerList {
                 if (alphSwitchList[i].episode <= episode) {
                     /*
                      * // UNUSED - debug? int value; if
-                     * (R_CheckTextureNumForName(alphSwitchList[mochadoom.i].name1) < 0) {
+                     * (R_CheckTextureNumForName(alphSwitchList[i].name1) < 0) {
                      * system.Error("Can't find switch texture '%s'!",
-                     * alphSwitchList[mochadoom.i].name1); continue; } value =
-                     * R_TextureNumForName(alphSwitchList[mochadoom.i].name1);
+                     * alphSwitchList[i].name1); continue; } value =
+                     * R_TextureNumForName(alphSwitchList[i].name1);
                      */
                     switchlist[index++] = DOOM.textureManager.TextureNumForName(alphSwitchList[i].name1);
                     switchlist[index++] = DOOM.textureManager.TextureNumForName(alphSwitchList[i].name2);
@@ -465,13 +465,13 @@ public abstract class UnifiedGameMap implements ThinkerList {
                 StartButton(line, w, texture, time);
             } else {
                 LOGGER.log(Level.SEVERE, "P_StartButton: no button slots left!");
-                //System.exit(1);
+                System.exit(1);
             }
         }
 
         //
         // Function that changes wall texture.
-        // Tell it if switch is ok to use again (true=yes, it'mochadoom.s a button).
+        // Tell it if switch is ok to use again (true=yes, it's a button).
         //
         public void ChangeSwitchTexture(line_t line, boolean useAgain) {
             int texTop;
@@ -563,7 +563,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
     public thinker_t thinkercap;
 
     /**
-     * killough'mochadoom.s code for thinkers seems to be totally broken in M.D,
+     * killough's code for thinkers seems to be totally broken in M.D,
      * so commented it out and will not probably restore, but may invent
      * something new in future
      * - Good Sign 2017/05/1
@@ -575,8 +575,8 @@ public abstract class UnifiedGameMap implements ThinkerList {
     @P_Tick.C(P_InitThinkers)
     public void InitThinkers() {
     	
-        /*for (int mochadoom.i=0; mochadoom.i<th_class.NUMTHCLASS; mochadoom.i++)  // killough 8/29/98: initialize threaded lists
-            thinkerclasscap[mochadoom.i].cprev = thinkerclasscap[mochadoom.i].cnext = thinkerclasscap[mochadoom.i];*/
+        /*for (int i=0; i<th_class.NUMTHCLASS; i++)  // killough 8/29/98: initialize threaded lists
+            thinkerclasscap[i].cprev = thinkerclasscap[i].cnext = thinkerclasscap[i];*/
         
         thinker_t next = thinkercap.next;
         thinker_t prev = thinkercap.prev;
@@ -599,7 +599,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
     }
 
     /**
-     * killough'mochadoom.s code for thinkers seems to be totally broken in M.D,
+     * killough's code for thinkers seems to be totally broken in M.D,
      * so commented it out and will not probably restore, but may invent
      * something new in future
      * - Good Sign 2017/05/1
@@ -617,7 +617,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
     }*/
     
     /**
-     * killough'mochadoom.s code for thinkers seems to be totally broken in M.D,
+     * killough's code for thinkers seems to be totally broken in M.D,
      * so commented it out and will not probably restore, but may invent
      * something new in future
      * - Good Sign 2017/05/1
@@ -685,14 +685,14 @@ public abstract class UnifiedGameMap implements ThinkerList {
     
     //protected final P_RemoveThinkerDelayed RemoveThinkerDelayed; 
     
-    //public class P_RemoveThinkerDelayed implements mochadoom.p.ActionFunctions.TypedAction <thinker_t>{
+    //public class P_RemoveThinkerDelayed implements p.ActionFunctions.TypedAction <thinker_t>{
         
     //@Override
     //public void accept(thinker_t thinker) {
         
     	/*
         try {
-        System.err.printf("Delete: %s %d<= %s %d => %s %d\mochadoom.n",
+        System.err.printf("Delete: %s %d<= %s %d => %s %d\n",
             ((mobj_t)thinker.prev).type,((mobj_t)thinker.prev).thingnum,
             ((mobj_t)thinker).type,((mobj_t)thinker).thingnum,
             ((mobj_t)thinker.next).type,((mobj_t)thinker.next).thingnum);
@@ -712,7 +712,7 @@ public abstract class UnifiedGameMap implements ThinkerList {
             //(next.prev = currentthinker = thinker.prev).next = next;
             //thinker.next=thinker.prev=null;
             //try {
-           // System.err.printf("Delete: %s %d <==> %s %d\mochadoom.n",
+           // System.err.printf("Delete: %s %d <==> %s %d\n",
            //     ((mobj_t)currentthinker.prev).type,((mobj_t)currentthinker.prev).thingnum,
            //     ((mobj_t)currentthinker.next).type,((mobj_t)currentthinker.next).thingnum);
             //} catch (ClassCastException e){

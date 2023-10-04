@@ -166,7 +166,7 @@ public interface ActionsTeleportation extends ActionsSectors {
         ma.tmfloorz = ma.tmdropoffz = newsubsec.sector.floorheight;
         ma.tmceilingz = newsubsec.sector.ceilingheight;
 
-        sceneRenderer().increaseValidCount(1); // This is r_main'mochadoom.s ?
+        sceneRenderer().increaseValidCount(1); // This is r_main's ?
         spechits.numspechit = 0;
 
         // stomp on any things contacted

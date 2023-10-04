@@ -77,7 +77,7 @@ public interface ActionsAim extends ActionsMissiles {
 
         // see which target is to be aimed at
         // FIXME: angle can already be negative here.
-        // Not a problem if it'mochadoom.s just moving about (accumulation will work)
+        // Not a problem if it's just moving about (accumulation will work)
         // but it needs to be sanitized before being used in any function.
         an = mo.angle;
         //_D_: &BITS32 will be used later in this function, by fine(co)sine()

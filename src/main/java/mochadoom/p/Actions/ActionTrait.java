@@ -307,7 +307,7 @@ public interface ActionTrait extends Trait, ThinkerList {
         }
 
         // A line has been hit
-        // The moving thing'mochadoom.s destination position will cross
+        // The moving thing's destination position will cross
         // the given line.
         // If this should not be allowed, return false.
         // If the line is special, keep track of it
@@ -348,7 +348,7 @@ public interface ActionTrait extends Trait, ThinkerList {
         if (ld.special != 0) {
             spechits.spechit[spechits.numspechit] = ld;
             spechits.numspechit++;
-            // Let'mochadoom.s be proactive about this.
+            // Let's be proactive about this.
             if (spechits.numspechit >= spechits.spechit.length) {
                 this.ResizeSpechits();
             }
@@ -445,8 +445,8 @@ public interface ActionTrait extends Trait, ThinkerList {
         yh = ll.getSafeBlockY(ma.tmbbox[BOXTOP] - ll.bmaporgy);
 
         if (FIX_BLOCKMAP_512) {
-            // Maes'mochadoom.s quick and dirty blockmap extension hack
-            // E.mochadoom.g. for an extension of 511 blocks, max negative is -1.
+            // Maes's quick and dirty blockmap extension hack
+            // E.g. for an extension of 511 blocks, max negative is -1.
             // A full 512x512 blockmap doesn't have negative indexes.
             if (xl <= ll.blockmapxneg) {
                 xl = 0x1FF & xl;         // Broke width boundary

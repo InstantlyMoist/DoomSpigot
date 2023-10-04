@@ -31,7 +31,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * In vanilla mochadoom.doom there is union called actionf_t that can hold
+ * In vanilla doom there is union called actionf_t that can hold
  * one of the three types: actionf_p1, actionf_v and actionf_p2
  * 
  * typedef union
@@ -65,7 +65,7 @@ import java.util.logging.Logger;
  * was created to hold possible names of the functions, and they were checked
  * by name, not by equality of the objects (object == object if point the same)
  * assigned to one of three fields. But, not understanding the true nature
- * of C'mochadoom.s unions, in Mocha Doom all three fields were preserved and threated
+ * of C's unions, in Mocha Doom all three fields were preserved and threated
  * like they can hold some different information at the same time.
  * 
  * I present hereby the solution that will both simplify the definition
@@ -216,7 +216,7 @@ public enum ActiveStates implements ThinkerStates{
             return null;
         }
         
-        // don't believe, it'mochadoom.s checked
+        // don't believe, it's checked
         return (T) this.actionFunction;
     }
 }

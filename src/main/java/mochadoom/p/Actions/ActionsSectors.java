@@ -339,7 +339,7 @@ public interface ActionsSectors extends ActionsLights, ActionsFloors, ActionsDoo
     /**
      * Special Stuff that can not be categorized
      *
-     * (I'mochadoom.m sure it has something to do with John Romero'mochadoom.s obsession with fucking stuff and making them his bitches).
+     * (I'm sure it has something to do with John Romero's obsession with fucking stuff and making them his bitches).
      *
      * @param line
      *

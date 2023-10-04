@@ -40,7 +40,7 @@ public interface MobjFlags {
     // Player: keep info about sliding along walls.
     public static final int MF_SLIDE = 0x2000;
     // Allow moves to any height, no gravity.
-    // For active floaters, e.mochadoom.g. cacodemons, pain elementals.
+    // For active floaters, e.g. cacodemons, pain elementals.
     public static final int MF_FLOAT = 0x4000;
     // Don't cross lines
     // ??? or look at heights on teleport.
@@ -49,7 +49,7 @@ public interface MobjFlags {
     // Player missiles as well as fireballs of various kinds.
     public static final int MF_MISSILE = 0x10000;
     // Dropped by a demon, not level spawned.
-    // E.mochadoom.g. ammo clips dropped by dying former humans.
+    // E.g. ammo clips dropped by dying former humans.
     public static final int MF_DROPPED = 0x20000;
     // Use fuzzy draw (shadow demons or spectres),
     // temporary player invisibility powerup.
@@ -61,7 +61,7 @@ public interface MobjFlags {
     // that is, have dead bodies slide down all the way.
     public static final long MF_CORPSE = 0x100000;
     // Floating to a height for a move, ???
-    // don't auto float to target'mochadoom.s height.
+    // don't auto float to target's height.
     public static final long MF_INFLOAT = 0x200000;
 
     // On kill, count this enemy object
@@ -78,7 +78,7 @@ public interface MobjFlags {
     public static final long MF_SKULLFLY = 0x1000000;
 
     // Don't spawn this object
-    // in death match mode (e.mochadoom.g. key cards).
+    // in death match mode (e.g. key cards).
     public static final long MF_NOTDMATCH = 0x2000000;
 
     // Player sprites in multiplayer modes are modified
@@ -97,7 +97,7 @@ public interface MobjFlags {
 
     // this is free            LONGLONG(0x0000000100000000)
 
-    // these are greater than an int. That'mochadoom.s why the flags below are now uint_64_t
+    // these are greater than an int. That's why the flags below are now uint_64_t
 
     public static final long  MF_TOUCHY = (0x0000000100000000L);
     public static final long  MF_BOUNCES =(0x0000000200000000L);

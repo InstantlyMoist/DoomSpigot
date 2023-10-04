@@ -73,7 +73,7 @@ public interface PainsSouls extends ActionTrait {
     /**
      * A_PainShootSkull
      * Spawn a lost soul and launch it at the target
-     * It'mochadoom.s not a valid callback like the others, actually.
+     * It's not a valid callback like the others, actually.
      * No idea if some DEH patch does use it to cause
      * mayhem though.
      *
@@ -105,7 +105,7 @@ public interface PainsSouls extends ActionTrait {
             return;
         }
 
-        // okay, there'mochadoom.s playe for another one
+        // okay, there's playe for another one
         an = Tables.toBAMIndex(angle);
 
         prestep

@@ -125,7 +125,7 @@ public interface Attacks extends Monsters {
         angle = player.mo.angle;
         //angle = (angle+(RND.P_Random()-RND.P_Random())<<18)/*&BITS32*/;
         // _D_: for some reason, punch didnt work until I change this
-        // I think it'mochadoom.s because of "+" VS "<<" prioritys...
+        // I think it's because of "+" VS "<<" prioritys...
         angle += (P_Random() - P_Random()) << 18;
         slope = getAttacks().AimLineAttack(player.mo, angle, MELEERANGE);
         getAttacks().LineAttack(player.mo, angle, MELEERANGE, slope, damage);
@@ -170,7 +170,7 @@ public interface Attacks extends Monsters {
         angle = sceneRenderer().PointToAngle2(player.mo.x, player.mo.y,
             sp.linetarget.x, sp.linetarget.y) & BITS32;
         /* FIXME: this comparison is going to fail.... or not?
-            If e.mochadoom.g. angle = 359 degrees (which will be mapped to a small negative number),
+            If e.g. angle = 359 degrees (which will be mapped to a small negative number),
             and player.mo.angle = 160 degrees (a large, positive value), the result will be a
             large negative value, which will still be "greater" than ANG180.
             

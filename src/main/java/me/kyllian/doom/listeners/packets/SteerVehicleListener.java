@@ -68,7 +68,10 @@ public class SteerVehicleListener {
                     // A out
                     engine.windowController.getObserver().feed(new event_t.keyevent_t(evtype_t.ev_keyup, Signals.ScanCode.SC_A));
                 }
+                // Jump
+                engine.windowController.getObserver().feed(new event_t.keyevent_t(container.getBooleans().read(0) ? evtype_t.ev_keydown : evtype_t.ev_keyup, Signals.ScanCode.SC_SPACE));
 
+                // Quit
                 if (container.getBooleans().read(1)) {
                     pocket.stopEmulator(player);
                     player.sendMessage(doomPlugin.getMessageHandler().getMessage("stopped"));
